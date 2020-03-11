@@ -34,6 +34,7 @@
     <script>
         window.csrfToken = '{{ csrf_token() }}';
     </script>
+     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
 <body>

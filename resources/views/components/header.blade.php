@@ -25,7 +25,18 @@
                             <li><a href="manage_acc.html" target="_blank">Pricing Plan</a></li>
                             <li><a href="blog.html" target="_blank">Blog</a></li>
                             <li><a href="#">Setting</a></li>
-                            <li><a id="js-logout" href="/logout">Logout</a></li>
+                            <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    </li>
+
+                                        
                         </ul>
                     </div>
                 </div>

@@ -14,31 +14,44 @@
                             <div class="ms_register_form">
                                 <h2>Register / Sign Up</h2>
                                 <div class="form-group">
-                                    <input name="name" type="text" placeholder="Enter Your Name" class="form-control">
+                                    <input name="first_name" type="text" placeholder="Enter Your First Name" class="form-control">
                                     <span class="form_icon">
-    							<i class="fa_icon form-user" aria-hidden="true"></i>
-    							</span>
+                                <i class="fa_icon form-user" aria-hidden="true"></i>
+                                </span>
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="last_name" type="text" placeholder="Enter Your Last Name" class="form-control">
+                                    <span class="form_icon">
+                                <i class="fa_icon form-user" aria-hidden="true"></i>
+                                </span>
+                                </div>
+                                <div class="form-group">
+                                    <input name="nickname" type="text" placeholder="Enter Your Nickname" class="form-control">
+                                    <span class="form_icon">
+                                <i class="fa_icon form-user" aria-hidden="true"></i>
+                                </span>
                                 </div>
                                 <div class="form-group">
                                     <input name="email" type="text" placeholder="Enter Your Email" class="form-control">
                                     <span class="form_icon">
-    							<i class="fa_icon form-envelope" aria-hidden="true"></i>
-    						</span>
+                                <i class="fa_icon form-envelope" aria-hidden="true"></i>
+                            </span>
                                 </div>
                                 <div class="form-group">
                                     <input name="password" type="password" placeholder="Enter Password" class="form-control">
                                     <span class="form_icon">
-    						<i class="fa_icon form-lock" aria-hidden="true"></i>
-    						</span>
+                            <i class="fa_icon form-lock" aria-hidden="true"></i>
+                            </span>
                                 </div>
                                 <div class="form-group">
                                     <input name="password_confirmation" type="password" placeholder="Confirm Password" class="form-control">
                                     <span class="form_icon">
-    						<i class=" fa_icon form-lock" aria-hidden="true"></i>
-    						</span>
+                            <i class=" fa_icon form-lock" aria-hidden="true"></i>
+                            </span>
                                 </div>
                                 <button class="save_btn">register now</button>
-                                <p>Already Have An Account? <a href="#myModal1" data-toggle="modal" class="ms_modal hideCurrentModel">login here</a></p>
+                                <p>Already Have An Account? <a href="/login">login here</a></p>
                             </div>
                         </form>
                     </div>
