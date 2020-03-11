@@ -16,7 +16,7 @@
                             <div class="ms_save_email">
                                 <h3>or use your email</h3>
                                 <div class="save_input_group">
-                                    <input name="email" type="text" placeholder="Enter Your Email" class="form-control">
+                                    <input name="identity" type="text" placeholder="Enter Your Nickname or Email" class="form-control">
                                 </div>
                                 <div class="save_input_group">
                                     <input name="password" type="password" placeholder="Enter Password" class="form-control">
