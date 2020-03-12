@@ -21,6 +21,7 @@ class CreateSongsTable extends Migration
             $table->bigInteger('album_id')->unsigned();
             $table->integer('released_date');
             $table->string('img');
+            $table->string('url');
             $table->timestamps();
 
             $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');
