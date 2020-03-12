@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -19,7 +22,10 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    //use AuthenticatesUsers;
+    use AuthenticatesUsers{
+    validateLogin as tvalidateLogin;
+}
 
     /**
      * Where to redirect users after login.
@@ -52,5 +58,23 @@ class LoginController extends Controller
 
          return $field;
     }
+
+    protected function validateLogin(Request $request)
+    {
+        $login = $this->username();
+
+        if( !filter_var($login, FILTER_VALIDATE_EMAIL) ){
+        $request->validate([
+            $login => 'required|string|exists:mysql.users,nickname',
+            'password' => 'required|string',
+        ]);
+    } else {$request->validate([
+            $login => 'exists:mysql.users,email',
+            'password' => 'required|string',
+        ]);
+    }
+}
+        
+        
 
 }

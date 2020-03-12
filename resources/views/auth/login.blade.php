@@ -16,10 +16,20 @@
                             <div class="ms_save_email">
                                 <h3>or use your email</h3>
                                 <div class="save_input_group">
-                                    <input name="identity" type="text" placeholder="Enter Your Nickname or Email" class="form-control">
+                                    <input name="identity" type="text" placeholder="Enter Your Nickname or Email" class="@error('identity') is-invalid @enderror form-control" value="{{ old('identity') }}">
+
+                                    @error('identity')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+
                                 </div>
                                 <div class="save_input_group">
-                                    <input name="password" type="password" placeholder="Enter Password" class="form-control">
+                                    <input name="password" type="password" placeholder="Enter Password" class="@error('password') is-invalid @enderror form-control">
+
+                                    @error('password')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+
                                 </div>
                                 <button class="save_btn">Log in</button>
                             </div>

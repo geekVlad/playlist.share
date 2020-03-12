@@ -51,7 +51,7 @@
                                 <div class="form-group">
                                     <input name="email" type="text" placeholder="Enter Your Email" class="@error('email') is-invalid @enderror form-control" value="{{ old('email') }}">
 
-                                    @error('last_name')
+                                    @error('email')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
 
@@ -62,7 +62,7 @@
                                 <div class="form-group">
                                     <input name="password" type="password" placeholder="Enter Password" class="@error('last_name') is-invalid @enderror form-control">
 
-                                    @error('last_name')
+                                    @error('password')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
 
@@ -73,7 +73,7 @@
                                 <div class="form-group">
                                     <input name="password_confirmation" type="password" placeholder="Confirm Password" class="@error('last_name') is-invalid @enderror form-control">
 
-                                    @error('last_name')
+                                    @error('password_confirmation')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                     
