@@ -14,7 +14,7 @@
                 </div>
                 <div class="ms_nav_wrapper">
                     <ul>
-                        <li><a href="index-2.html" class="active" title="Discover">
+                        <li><a href="index-2.html" class="active" title="Home">
 						<span class="nav_icon">
 							<span class="icon icon_discover"></span>
 						</span>
