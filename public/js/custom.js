@@ -441,3 +441,28 @@ Assigned to: Theme Forest
         return false
     });
 })(jQuery);
+
+const logoutBtn = document.getElementById('js-logout');
+
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const form = document.createElement('form');
+        form.action = logoutBtn.href;
+        form.method = 'POST';
+        form.style.position = 'absolute';
+        form.style.transform = 'translate(-10000px,-10000px)';
+
+        const token = document.createElement('input');
+        token.value = window.csrfToken;
+        token.type = 'hidden';
+        token.name = '_token';
+        form.append(token);
+
+        document.body.append(form);
+        form.submit();
+
+        form.remove();
+    });
+}
