@@ -9,7 +9,7 @@ $factory->define(App\Playlist::class, function (Faker $faker) {
     return [
         'title' => $faker->word(),
         'description' => $faker->sentence( rand(3, 8) ),
-        'img' => $faker->imageUrl(),
+        'img' => $faker->imageUrl(480, 480),
         'user_id' => rand(1,5),
     ];
 });

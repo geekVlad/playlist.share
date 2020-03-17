@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Playlist;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', );
+        $userId = Auth::id();
+        //$user = Auth::user();
+
+        $playlists = DB::table('playlists')
+            ->join('users', 'playlists.user_id', '=', 'users.id')
+            ->where('users.id', '=', $userId)
+            ->select('playlists.*')
+            ->get();
+        // $playlists = DB::table('playlists')->->get()
+
+        return view('home', ['playlists' => $playlists] );
     }
 }
