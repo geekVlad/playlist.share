@@ -7,6 +7,7 @@ use App\User;
 use App\Playlist;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -28,15 +29,20 @@ class HomeController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        //$user = Auth::user();
 
         $playlists = DB::table('playlists')
-            ->join('users', 'playlists.user_id', '=', 'users.id')
-            ->where('users.id', '=', $userId)
+            ->join('users', 'playlists.user_id', 'users.id')
+            ->where('users.id', $userId)
             ->select('playlists.*')
             ->get();
-        // $playlists = DB::table('playlists')->->get()
 
-        return view('home', ['playlists' => $playlists] );
+        $top15 = DB::table('playlists')
+            ->whereDate('updated_at', '>', Carbon::now()->subDays(7))
+            ->select('playlists.*')
+            ->limit(15)
+            ->orderBy('likes', 'desc')
+            ->get();
+
+        return view('home', ['playlists' => $playlists, 'top15' => $top15] );
     }
 }
