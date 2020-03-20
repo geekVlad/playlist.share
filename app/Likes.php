@@ -10,8 +10,9 @@ class Likes extends Model
 {
     protected $table = 'likes';
     public $timestamps = false;
+    
     protected $dispatchesEvents = [
-        'saved' => LikesRowCreated::class,
+        'created' => LikesRowCreated::class,
         'deleted' => LikesRowDeleted::class,
     ];
 }

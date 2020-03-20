@@ -4,10 +4,10 @@ namespace App\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Events\LikesRowCreated;
+use App\Events\CommentsRowDeleted;
 use Illuminate\Support\Facades\DB;
 
-class IncremenPlaylistLikes
+class DecrementPlaylistComments
 {
     /**
      * Create the event listener.
@@ -22,13 +22,13 @@ class IncremenPlaylistLikes
     /**
      * Handle the event.
      *
-     * @param  LikesRowCreated  $event
+     * @param  object  $event
      * @return void
      */
-    public function handle(LikesRowCreated $event)
+    public function handle(CommentsRowDeleted $event)
     {
         DB::table('playlists')
         ->where('id', '=', $event->playlist_id)
-        ->increment('likes');
+        ->decrement('comments');
     }
 }

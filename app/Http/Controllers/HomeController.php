@@ -43,6 +43,14 @@ class HomeController extends Controller
             ->orderBy('likes', 'desc')
             ->get();
 
-        return view('home', ['playlists' => $playlists, 'top15' => $top15] );
+        $newPlaylists = DB::table('playlists')
+            ->whereDate('updated_at', '>', Carbon::now()->subHours(23))
+            ->select('playlists.*')
+            ->get();
+
+        return view('home', ['playlists' => $playlists, 
+                            'top15' => $top15,
+                            'newPlaylists' => $newPlaylists,
+                    ]);
     }
 }
