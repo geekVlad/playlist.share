@@ -13,8 +13,9 @@
         <div class="ms_content_wrapper padder_top80">
             <!---Header--->
            @include('components.header')
+
             <!---Banner--->
-            <div class="ms-banner">
+            <!-- <div class="ms-banner">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
@@ -33,11 +34,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
             <!---Recently Played Music--->
             <div class="ms_rcnt_slider">
                 <div class="ms_heading">
-                    <h1>Recently Played</h1>
+                    <h1>My playlists</h1>
                     <span class="veiw_all"><a href="#">view more</a></span>
                 </div>
                 <div class="swiper-container">

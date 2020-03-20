@@ -30,6 +30,11 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- Favicon Link -->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+
+    <script>
+        window.csrfToken = '{{ csrf_token() }}';
+    </script>
+     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
 <body>

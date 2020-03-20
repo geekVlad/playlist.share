@@ -881,8 +881,7 @@ ul.ms_lang_box:after {
 }
 .ms_heading {
 	width: 100%;
-	display: inline-block;
-	margin-bottom: 30px;
+	display: inline-block;	margin-bottom: 30px;
 }
 .ms_heading h1 {
 	font-size: 18px;
