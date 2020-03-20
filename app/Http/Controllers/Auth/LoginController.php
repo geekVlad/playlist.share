@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Validation\Rules\Exists;
 
 class LoginController extends Controller
 {
@@ -22,10 +23,7 @@ class LoginController extends Controller
     |
     */
 
-    //use AuthenticatesUsers;
-    use AuthenticatesUsers{
-    validateLogin as tvalidateLogin;
-}
+    use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -61,19 +59,38 @@ class LoginController extends Controller
 
     protected function validateLogin(Request $request)
     {
+        // $request->validate([
+        //     'identity' => 'exists:mysql.users,email',
+        //     'password' => 'required|string',
+        //     ]);  
+        
         $login = $this->username();
 
-        if( !filter_var($login, FILTER_VALIDATE_EMAIL) ){
+        $exists = User::where(
+                'email', 
+                $request->input('identity')
+            )
+            ->orWhere(
+                'nickname', 
+                $request->input('identity')
+            )
+            ->exists();
+
+
         $request->validate([
-            $login => 'required|string|exists:mysql.users,nickname',
-            'password' => 'required|string',
-        ]);
-    } else {$request->validate([
-            $login => 'exists:mysql.users,email',
+            'identity' => [
+                'required',
+                function (string $field, $value, $reject) use ($exists) {
+                    if (! $exists) {
+                        $reject(
+                            _('wrong credentionals')
+                        );
+                    }
+                }
+            ],
             'password' => 'required|string',
         ]);
     }
-}
         
         
 
