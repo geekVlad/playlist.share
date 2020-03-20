@@ -11,6 +11,6 @@ class PlaylistsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Playlist::class, 15)->create();
+        factory(App\Model\Playlist::class, 15)->create();
     }
 }
