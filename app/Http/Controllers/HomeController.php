@@ -3,7 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use Validator;
+=======
+use App\Models\User;
+use App\Models\Playlist;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+>>>>>>> development
 
 class HomeController extends Controller
 {
@@ -24,7 +32,30 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $userId = Auth::id();
+
+        $playlists = DB::table('playlists')
+            ->join('users', 'playlists.user_id', 'users.id')
+            ->where('users.id', $userId)
+            ->select('playlists.*')
+            ->get();
+
+        $top15 = DB::table('playlists')
+            ->whereDate('updated_at', '>', Carbon::now()->subDays(7))
+            ->select('playlists.*')
+            ->limit(15)
+            ->orderBy('likes', 'desc')
+            ->get();
+
+        $newPlaylists = DB::table('playlists')
+            ->whereDate('updated_at', '>', Carbon::now()->subHours(23))
+            ->select('playlists.*')
+            ->get();
+
+        return view('home', ['playlists' => $playlists, 
+                            'top15' => $top15,
+                            'newPlaylists' => $newPlaylists,
+                    ]);
     }
 
     public function AddPlaylistGet()

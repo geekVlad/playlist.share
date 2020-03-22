@@ -6,6 +6,16 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Events\CommentsRowCreated;
+use App\Events\CommentsRowDeleted;
+use App\Events\LikesRowCreated;
+use App\Events\LikesRowDeleted;
+use App\Listeners\DecremenPlaylistLikes;
+use App\Listeners\IncremenPlaylistLikes;
+use App\Listeners\DecremenPlaylistComments;
+use App\Listeners\IncremenPlaylistComments;
+
+
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +28,21 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        CommentsRowCreated::class => [
+            IncremenPlaylistComments::class,
+        ],
+        CommentsRowDeleted::class => [
+            DecremenPlaylistComments::class,
+        ],
+        LikesRowCreated::class => [
+            IncremenPlaylistComments::class,
+        ],
+        LikesRowDeleted::class => [
+            DecremenPlaylistLikes::class,
+        ],
+
+
+
     ];
 
     /**
@@ -29,6 +54,6 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        
     }
 }

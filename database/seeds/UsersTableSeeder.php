@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PlaylistsTableSeeder extends Seeder
+class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class PlaylistsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Model\Playlist::class, 15)->create();
+        factory(App\Model\User::class, 5)->create();
     }
 }
