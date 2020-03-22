@@ -22,7 +22,7 @@
 							Homepage
 						</span>
 						</a>
-						<li><a href="feature_playlist.html" title="My Playlists">
+						<li><a href="http://project.test/myplaylists" title="My Playlists">
 						<span class="nav_icon">
 							<span class="icon icon_fe_playlist"></span>
 						</span>

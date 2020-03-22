@@ -21,4 +21,6 @@ Route::get('/addplaylist', 'PlaylistController@AddPlaylistGet')->name('addplayli
 Route::post('/addplaylist', 'PlaylistController@AddPlaylistPost')->name('addplaylistpost');
 Route::get('/playlist', 'PlaylistController@ShowPlaylist')->name('showplaylist');
 
+Route::get('/myplaylists', 'HomeController@myPlayslists')->name('showMyPlaylists');
+
 

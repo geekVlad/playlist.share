@@ -84,4 +84,17 @@ class HomeController extends Controller
 
 
     }
+
+    public function myPlayslists()
+    {
+        $userId = Auth::id();
+
+        $myPlaylists = DB::table('playlists')
+            ->join('users', 'playlists.user_id', 'users.id')
+            ->where('users.id', $userId)
+            ->select('playlists.*')
+            ->get();
+
+        return view('myPlaylists', ['myPlaylists' => $myPlaylists, ]);
+    }
 }
