@@ -12,13 +12,12 @@
 */
 
 
+Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/addplaylist', 'PlaylistController@AddPlaylistGet')->name('addplaylistget');
-Route::post('/addplaylist', 'PlaylistController@AddPlaylistPost')->name('addplaylistpost');
-Route::get('/playlist', 'PlaylistController@ShowPlaylist')->name('showplaylist');
+Route::get('/home', 'HomeController@index')->name('home');
 
 

@@ -35,15 +35,6 @@
         window.csrfToken = '{{ csrf_token() }}';
     </script>
      <script src="{{ asset('js/app.js') }}" defer></script>
-    <style type="text/css">
-        .text-area-description{
-            height: 250px;
-        }
-        .addplaylist{
-            padding-right: 30px;
-            padding-left: 30px;
-        }
-    </style>
 </head>
 
 <body>
