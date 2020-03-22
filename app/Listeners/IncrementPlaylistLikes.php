@@ -2,13 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Events\CommentsRowCreated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Events\CommentsRowCreated;
+use App\Events\LikesRowCreated;
 use Illuminate\Support\Facades\DB;
 
-class IncrementPlaylistComments
+class IncrementPlaylistLikes
 {
     /**
      * Create the event listener.
@@ -23,13 +22,13 @@ class IncrementPlaylistComments
     /**
      * Handle the event.
      *
-     * @param  CommentsRowCreated  $event
+     * @param  LikesRowCreated  $event
      * @return void
      */
-    public function handle(CommentsRowCreated $event)
+    public function handle(LikesRowCreated $event)
     {
         DB::table('playlists')
         ->where('id', '=', $event->playlist_id)
-        ->increment('comments');
+        ->increment('likes');
     }
 }

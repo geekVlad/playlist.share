@@ -3,15 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use Validator;
-=======
 use App\Models\User;
 use App\Models\Playlist;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
->>>>>>> development
 
 class HomeController extends Controller
 {
