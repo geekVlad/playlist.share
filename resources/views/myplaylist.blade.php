@@ -18,10 +18,11 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="ms_heading">
-                                <h1>Мій плейлист</h1>
+                                <h1>{{ $playlist->title }}</h1>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12 padding_right40">
+                            @foreach( $playlist->songs as $song)
                             <div class="ms_weekly_box">
                                 <div class="weekly_left">
                                     <div class="w_top_song">
@@ -34,8 +35,8 @@
                                             </div>
                                         </div>
                                         <div class="w_tp_song_name">
-                                            <h3><a href="#">Until I Met You</a></h3>
-                                            <p>Ava Cornish</p>
+                                            <h3><a href="#">{{ $song->title }}</a></h3>
+                                            <p>{{ $song->artist_id }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -56,6 +57,7 @@
                                     <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                                 </ul>
                             </div>
+                            @endforeach
                             
                     </div>
                 </div>

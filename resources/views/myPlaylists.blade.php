@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="ms_heading">
-                                <h1>weekly top 15</h1>
+                                <h1>My playlists</h1>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12 padding_right40">
@@ -37,7 +37,7 @@
                                             </div>
                                         </div>
                                         <div class="w_tp_song_name">
-                                            <h3><a href="#">{{ $playlist->title }}</a></h3>
+                                            <h3><a href="http://project.test/playlist?id={{ $playlist->id }}">{{ $playlist->title }}</a></h3>
                                         </div>
                                     </div>
                                 </div>

@@ -29,16 +29,16 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         CommentsRowCreated::class => [
-            IncremenPlaylistComments::class,
+            IncrementPlaylistComments::class,
         ],
         CommentsRowDeleted::class => [
-            DecremenPlaylistComments::class,
+            DecrementPlaylistComments::class,
         ],
         LikesRowCreated::class => [
-            IncremenPlaylistComments::class,
+            IncrementPlaylistLikes::class,
         ],
         LikesRowDeleted::class => [
-            DecremenPlaylistLikes::class,
+            DecrementPlaylistLikes::class,
         ],
 
 

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Playlist;
+use App\Models\Song;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class PlaylistController extends Controller
@@ -33,7 +35,7 @@ class PlaylistController extends Controller
                 ->back()
                 ->withErrors($valid)
                 ->withInput();
-    }
+        }
 
         $destinationPath = public_path('images/playlist/');
         $fileName = substr(md5(uniqid()), 0, 20) . "." . $request->playlistimage->extension(); 
@@ -60,9 +62,10 @@ class PlaylistController extends Controller
         }
 
         if(Auth::user()->id == $playlist->user_id){
-            return view('myplaylist');
+            return view('myplaylist', compact('playlist'));
         }
 
-        return view('playlist');
+        return view('playlist', compact('playlist'));
     }
+    
 }

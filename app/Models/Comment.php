@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Events\CommentsRowCreated;
 use App\Events\CommentsRowDeleted;
+use App\Models;
 
 class Comment extends Model
 {

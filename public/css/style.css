@@ -2441,7 +2441,7 @@ i.ms_icon.icon_share {
 	text-align: center;
 	border-radius: 100%;
 	line-height: 19px;
-	cursor: pointer;
+	cursor: default;
 }
 .jp_queue_btn {
 	text-align: center;
