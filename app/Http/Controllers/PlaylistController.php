@@ -7,6 +7,7 @@ use Validator;
 use App\Models\Playlist;
 use App\Models\Song;
 use App\Models\Likes;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -62,15 +63,17 @@ class PlaylistController extends Controller
 
         $playlist = Playlist::where('id', $request->id)->first();
 
+        $comments = Comment::where('playlist_id', $playlist->id)->get();
+
         if(!$playlist){
             return "Такого плейлиста немає";
         }
 
         if(Auth::user()->id == $playlist->user_id){
-            return view('myplaylist', compact('playlist'));
+            return view('myplaylist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments ]);
         }
 
-        return view('playlist', ['playlist' => $playlist, 'like' => $like]);
+        return view('playlist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments ]);
     }
     
 }

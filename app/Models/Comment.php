@@ -19,4 +19,21 @@ class Comment extends Model
         'created' => CommentsRowCreated::class,
         'deleted' => CommentsRowDeleted::class,
     ];
+
+    // public function parent()
+    // {
+    //     return $this->belongsTo('App\Models\Comment', 'parent_id');
+    // }
+
+    // public function children()
+    // {
+    //     return $this->hasMany('App\Models\Comment', 'parent_id');
+    // }
+
+    public function playlists()
+    {
+    	return $this->belongsTo('App\Models\Playlist');
+    }
+
+
 }

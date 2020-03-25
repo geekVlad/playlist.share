@@ -24,6 +24,10 @@ class Playlist extends Model
         return $this->belongsToMany('App\Models\Song', 'playlists_songs');
     }
 
+    public function comments()
+    {
+       return $this->hasMany('App\Models\Comment');
+    }
     // public function users()
     // {
     //     return $this->belongsToMany('App\Models\User', 'likes');
