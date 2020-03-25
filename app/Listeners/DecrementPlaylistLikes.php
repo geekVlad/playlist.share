@@ -39,12 +39,5 @@ class DecrementPlaylistLikes
         ->where('user_id', $userId)
         ->where('playlist_id', $playlistId)
         ->delete();
-
-        // $like = Likes::where('user_id', $userId)
-        // ->where('playlist_id', $playlistId)
-        // ->first();
-
-        // $like->delete();
-        //Likes::destroy(['user_id' => $userId, 'playlist_id' => $playlistId]);
     }
 }

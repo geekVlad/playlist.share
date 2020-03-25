@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Models\Playlist;
 use App\Models\Song;
+use App\Models\Likes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -55,6 +56,10 @@ class PlaylistController extends Controller
     }
 
     public function ShowPlaylist(Request $request){
+        $userId = Auth::id();
+
+        $like = Likes::where(['user_id' => $userId, 'playlist_id' => $request->id])->first();
+
         $playlist = Playlist::where('id', $request->id)->first();
 
         if(!$playlist){
@@ -65,7 +70,7 @@ class PlaylistController extends Controller
             return view('myplaylist', compact('playlist'));
         }
 
-        return view('playlist', compact('playlist'));
+        return view('playlist', ['playlist' => $playlist, 'like' => $like]);
     }
     
 }

@@ -103,8 +103,6 @@ class HomeController extends Controller
 
         $like = Likes::create(['user_id' => $userId, 'playlist_id' => $playlistId]);
 
-        event(new LikesRowCreated($like));
-
         return redirect()->back();
     }
 
