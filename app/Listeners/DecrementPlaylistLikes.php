@@ -2,12 +2,13 @@
 
 namespace App\Listeners;
 
+use App\Events\LikesRowDeleted;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Events\LikesRowDeleted;
 use Illuminate\Support\Facades\DB;
+use App\Models\Likes;
 
-class DecremenPlaylistLikes
+class DecrementPlaylistLikes
 {
     /**
      * Create the event listener.
@@ -30,5 +31,13 @@ class DecremenPlaylistLikes
         DB::table('playlists')
         ->where('id', '=', $event->playlist_id)
         ->decrement('likes');
+
+        $playlistId = $event->playlist_id;
+        $userId = $event->user_id;
+
+        DB::table('likes')
+        ->where('user_id', $userId)
+        ->where('playlist_id', $playlistId)
+        ->delete();
     }
 }

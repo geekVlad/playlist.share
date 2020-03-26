@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -41,4 +44,33 @@ class User extends Authenticatable
     {
         return "{$this->first_name} {$this->last_name}";
     }
+
+    public static function getMyPlaylists()
+    {
+        $user = Auth::user();
+
+        $myPlaylists = $user->playlists;
+
+        return $myPlaylists;
+    }
+
+    public function playlists()
+    {
+       return $this->hasMany('App\Models\Playlist');
+    }
+
+    public function comments()
+    {
+       return $this->hasMany('App\Models\Comment');
+    }
+
+    // public function playlists()
+    // {
+    //    return $this->belongsTo('App\Models\Playlist', 'following_playlists');
+    // }
+
+    // public function playlists()
+    // {
+    //    return $this->belongsTo('App\Models\Playlist', 'likes');
+    // }
 }

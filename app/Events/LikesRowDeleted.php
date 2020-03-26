@@ -23,6 +23,7 @@ class LikesRowDeleted
     public function __construct(Likes $like)
     {
         $this->playlist_id = $like->playlist_id;
+        $this->user_id = $like->user_id;
     }
 
     /**

@@ -40,7 +40,7 @@
             <div class="ms_rcnt_slider">
                 <div class="ms_heading">
                     <h1>My playlists</h1>
-                    <span class="veiw_all"><a href="#">view more</a></span>
+                    <span class="veiw_all"><a href="http://project.test/myplaylists">view more</a></span>
                 </div>
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
                                 <div class="ms_rcnt_box_text">
-                                    <h3><a href="#">{{ $playlist->title }}</a></h3>
+                                    <h3><a href="http://project.test/playlist?id={{ $playlist->id }}">{{ $playlist->title }}</a></h3>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                                             </div>
                                         </div>
                                         <div class="w_tp_song_name">
-                                            <h3><a href="#">{{ $playlist->title }}</a></h3>
+                                            <h3><a href="http://project.test/playlist?id={{ $playlist->id }}">{{ $playlist->title }}</a></h3>
                                         </div>
                                     </div>
                                 </div>
@@ -447,7 +447,7 @@
                                         </div>
                                     </div>
                                     <div class="w_tp_song_name">
-                                        <h3><a href="#">{{ $playlist->title }}</a></h3>
+                                        <h3><a href="http://project.test/playlist?id={{ $playlist->id }}">{{ $playlist->title }}</a></h3>
                                     </div>
                                 </div>
                                 <div class="weekly_right">

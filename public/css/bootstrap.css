@@ -5294,7 +5294,6 @@ button.close {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1050;
   display: none;
   overflow: hidden;
   outline: 0;
@@ -5369,7 +5368,7 @@ button.close {
 }
 
 .modal-backdrop.show {
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .modal-header {

@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Playlist;
+use App\Models\Song;
+use App\Models\Likes;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class PlaylistController extends Controller
@@ -33,7 +37,7 @@ class PlaylistController extends Controller
                 ->back()
                 ->withErrors($valid)
                 ->withInput();
-    }
+        }
 
         $destinationPath = public_path('images/playlist/');
         $fileName = substr(md5(uniqid()), 0, 20) . "." . $request->playlistimage->extension(); 
@@ -52,17 +56,39 @@ class PlaylistController extends Controller
 
     }
 
-    public function ShowPlaylist(Request $request){
+    public function ShowPlaylist(Request $request)
+    {
+        $userId = Auth::id();
+
+        $like = Likes::where(['user_id' => $userId, 'playlist_id' => $request->id])->first();
+
         $playlist = Playlist::where('id', $request->id)->first();
+
+        $comments = Comment::with('user')->where('playlist_id', $playlist->id)->orderBy('updated_at')->get();
 
         if(!$playlist){
             return "Такого плейлиста немає";
         }
 
         if(Auth::user()->id == $playlist->user_id){
-            return view('myplaylist');
+            return view('myplaylist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments ]);
         }
 
-        return view('playlist');
+        return view('playlist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments
+                    ]);
     }
+
+    public function addComment(Request $request)
+    {
+        $message = $request->input('message');
+        $userId = Auth::id();
+        $playlistId = $request->id;
+
+        $comment = Comment::create(['user_id' => $userId, 
+            'playlist_id' => $playlistId, 
+            'message' => $message,
+        ]);
+        return redirect()->back();
+    }
+    
 }

@@ -7,7 +7,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use App\Events\LikesRowCreated;
 use Illuminate\Support\Facades\DB;
 
-class IncremenPlaylistLikes
+class IncrementPlaylistLikes
 {
     /**
      * Create the event listener.
