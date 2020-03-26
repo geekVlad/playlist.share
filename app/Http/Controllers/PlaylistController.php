@@ -56,14 +56,15 @@ class PlaylistController extends Controller
 
     }
 
-    public function ShowPlaylist(Request $request){
+    public function ShowPlaylist(Request $request)
+    {
         $userId = Auth::id();
 
         $like = Likes::where(['user_id' => $userId, 'playlist_id' => $request->id])->first();
 
         $playlist = Playlist::where('id', $request->id)->first();
 
-        $comments = Comment::where('playlist_id', $playlist->id)->get();
+        $comments = Comment::with('user')->where('playlist_id', $playlist->id)->orderBy('updated_at')->get();
 
         if(!$playlist){
             return "Такого плейлиста немає";
@@ -73,7 +74,21 @@ class PlaylistController extends Controller
             return view('myplaylist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments ]);
         }
 
-        return view('playlist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments ]);
+        return view('playlist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments
+                    ]);
+    }
+
+    public function addComment(Request $request)
+    {
+        $message = $request->input('message');
+        $userId = Auth::id();
+        $playlistId = $request->id;
+
+        $comment = Comment::create(['user_id' => $userId, 
+            'playlist_id' => $playlistId, 
+            'message' => $message,
+        ]);
+        return redirect()->back();
     }
     
 }

@@ -28,6 +28,11 @@ class Playlist extends Model
     {
        return $this->hasMany('App\Models\Comment');
     }
+
+    public function likes()
+    {
+       return $this->hasMany('App\Models\Likes', 'likes');
+    }
     // public function users()
     // {
     //     return $this->belongsToMany('App\Models\User', 'likes');

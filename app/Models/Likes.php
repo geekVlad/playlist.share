@@ -20,4 +20,9 @@ class Likes extends Model
         'created' => LikesRowCreated::class,
         'deleted' => LikesRowDeleted::class,
     ];
+
+    public function playlists()
+    {
+       return $this->belongsTo('App\Models\Playlist', 'likes');
+    }
 }

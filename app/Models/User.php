@@ -59,6 +59,11 @@ class User extends Authenticatable
        return $this->hasMany('App\Models\Playlist');
     }
 
+    public function comments()
+    {
+       return $this->hasMany('App\Models\Comment');
+    }
+
     // public function playlists()
     // {
     //    return $this->belongsTo('App\Models\Playlist', 'following_playlists');

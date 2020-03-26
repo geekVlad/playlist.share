@@ -58,12 +58,7 @@ class LoginController extends Controller
     }
 
     protected function validateLogin(Request $request)
-    {
-        // $request->validate([
-        //     'identity' => 'exists:mysql.users,email',
-        //     'password' => 'required|string',
-        //     ]);  
-        
+    {        
         $login = $this->username();
 
         $exists = User::where(
