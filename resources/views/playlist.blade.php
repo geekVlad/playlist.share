@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
                             <div class="ms_banner_img">
-                                <img src="{{ $playlist->img }}" alt="" class="img-fluid">
+                                <img src="{{ asset('images/playlist/'.$playlist->img)}}" alt="" class="img-fluid">
                             </div>
                             <div class="ms_banner_text">
                                 <h1 class="ms_color">{{ $playlist->title }}</h1>
