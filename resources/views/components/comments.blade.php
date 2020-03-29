@@ -11,6 +11,7 @@
 
                                         @foreach( $comments as $comment )
                                         <li>
+                                            @if( $comment->parent_id == null )
                                             <div>
                                                  <a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a> 
                                                 <a href="javascript:;" class="jp-playlist-item" tabindex="0">
@@ -19,8 +20,12 @@
                                                     <!-- <span class="que_img">
                                                         <img src="images/weekly/song9.jpg">
                                                     </span> -->
-
-                                                    <div class="que_data">{{ $comment->user->nickname }}<span class="jp-artist">{{ $comment->message }} </span>
+ 
+                                                        
+                                                        
+                                                    <div class="que_data">{{ $comment->user->nickname }}
+                                                        <span class="jp-artist">{{ $comment->message }} [{{ $comment->created_at }}]
+                                                        </span>
                                                     </div>
                                                 </a>
 
@@ -32,21 +37,58 @@
                                             </div>
                                             <ul class="more_option">
                                                 <li class="">
-                                                    <a href="#message"><span class="opt_icon" >Reply</span></a>
+                                                    <a onclick="
+                                                    document.getElementById('reply').hidden = false;
+                                                    document.getElementById('cancelReply').hidden = false;
+                                                    document.getElementById('comment').hidden = true;" 
+                                                      href="#message"><span class="opt_icon" >Reply</span></a>
                                                 </li>
-                                                
                                             </ul>
                                         </li>
+
+                                        @foreach( $comment->has('childrens')->get() as $children )
+                                        @if( $children->parent_id == $comment->id )
+                                        <li>
+                                            <div>
+                                                 <a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a> 
+                                                <a href="javascript:;" class="jp-playlist-item" tabindex="0">
+
+                                                    <!-- user avatar -->
+                                                    <!-- <span class="que_img">
+                                                        <img src="images/weekly/song9.jpg">
+                                                    </span> -->
+ 
+                                                        
+                                                        
+                                                    <div class="que_data">Reply to: {{ $comment->user->nickname }}  from: {{ $children->user->nickname }}
+                                                        <span class="jp-artist">{{ $children->message }} [{{ $children->created_at }}]
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        @endif
+                                        @endforeach
+                                        
+
+                                        @endif
                                         @endforeach
 									</ul>
 								</div>
-                            <form method="Post" action="playlistcommented?id={{$playlist->id}}">
+                            <form  method="Post" action="playlistcommented?id={{$playlist->id}}">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" id="message" name="message" placeholder="Enter your comment" class="form-control">
                                 </div>
-                                <button class="save_btn">Send</button>
+                                <button id="comment" class="save_btn">Send</button>
+                                <button id="reply" class="save_btn " hidden="true" 
+                                formaction="commentreplied?id={{$playlist->id}}&comment_id={{$">Send reply</button>
+                                
                             </form>
+                            <button onclick="document.getElementById('reply').hidden = true;
+                                            document.getElementById('cancelReply').hidden = true;
+                                            document.getElementById('comment').hidden = false;" 
+                                            id="cancelReply" class="save_btn" hidden="true">Cancel</button>
                             </div>
                         </div>
            

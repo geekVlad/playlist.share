@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Model;
+use App\Models\Playlist;
 use Faker\Generator as Faker;
 
-$factory->define(App\Playlist::class, function (Faker $faker) {
+$factory->define(Playlist::class, function (Faker $faker) {
     return [
         'title' => $faker->word(),
         'description' => $faker->sentence( rand(3, 8) ),

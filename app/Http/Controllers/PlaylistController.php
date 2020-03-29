@@ -64,7 +64,12 @@ class PlaylistController extends Controller
 
         $playlist = Playlist::where('id', $request->id)->first();
 
-        $comments = Comment::with('user')->where('playlist_id', $playlist->id)->orderBy('updated_at')->get();
+        $comments = Comment::with('user')->with('childrens')->where('playlist_id', $playlist->id)->orderBy('updated_at', 'Desc')->get();
+
+        // foreach ($comments as $comment) {
+        //     if($comment->has('childrens')->get())
+        //         dd($comment->has('childrens')->get());
+        // }
 
         if(!$playlist){
             return "Такого плейлиста немає";
@@ -87,6 +92,21 @@ class PlaylistController extends Controller
         $comment = Comment::create(['user_id' => $userId, 
             'playlist_id' => $playlistId, 
             'message' => $message,
+        ]);
+        return redirect()->back();
+    }
+
+    public function addCommentReply(Request $request)
+    {
+        $message = $request->input('message');
+        $userId = Auth::id();
+        $playlistId = $request->id;
+        $parentId = $request->comment_id;
+
+        $comment = Comment::create(['user_id' => $userId, 
+            'playlist_id' => $playlistId, 
+            'message' => $message,
+            'parent_id' => $parentId,
         ]);
         return redirect()->back();
     }
