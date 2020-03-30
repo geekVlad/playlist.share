@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Providers;
+namespace App\Listeners;
 
-use App\Providers\FollowRowCreated;
+use App\Events\FollowRowCreated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\DB;
 
 class IncrementPlaylistFollows
 {
@@ -21,11 +22,13 @@ class IncrementPlaylistFollows
     /**
      * Handle the event.
      *
-     * @param  FollowRowCreated  $event
+     * @param  =FollowRowCreated  $event
      * @return void
      */
     public function handle(FollowRowCreated $event)
     {
-        //
+        DB::table('playlists')
+        ->where('id', '=', $event->playlist_id)
+        ->increment('follows');    
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Playlist;
 use App\Models\Song;
 use App\Models\Likes;
 use App\Models\Comment;
+use App\Models\Follow;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -66,16 +67,17 @@ class PlaylistController extends Controller
 
         $comments = Comment::with('user')->with('childrens')->where('playlist_id', $playlist->id)->orderBy('updated_at', 'Desc')->get();
 
+        $follow = Follow::where(['user_id' => $userId, 'playlist_id' => $request->id])->first();
+
         if(!$playlist){
             return "Такого плейлиста немає";
         }
 
         if(Auth::user()->id == $playlist->user_id){
-            return view('myplaylist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments ]);
+            return view('myplaylist', ['playlist' => $playlist, 'comments' => $comments, ]);
         }
 
-        return view('playlist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments
-                    ]);
+        return view('playlist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments, 'follow' => $follow, ]);
     }
 
     public function addComment(Request $request)
