@@ -9,6 +9,19 @@
 								<div class="jp_queue_list_inner">
 									<ul>
 
+                                        @if( count($comments) == 0 )
+                                        <li>
+                                            <div>
+                                                <a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a> 
+                                                <a href="javascript:;" class="jp-playlist-item" tabindex="0">  
+                                                    <div class="que_data">
+                                                        <span class="jp-artist">[Looks like there's no comments. Be the first!]</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        @endif
+
                                         @foreach( $comments as $comment )
                                         <li>
                                             @if( $comment->parent_id == null )

@@ -28,7 +28,13 @@
                                     @if ( $like==null )
                                     <a href="playlistliked?id={{$playlist->id}}" class="ms_btn">Like</a>
                                     @else
-                                    <a href="playlist_un_liked?id={{$playlist->id}}" class="ms_btn">Unlike</a>
+                                    <a href="playlist_unliked?id={{$playlist->id}}" class="ms_btn">Unlike</a>
+                                    @endif
+
+                                    @if ( $follow==null )
+                                    <a href="playlistfollowed?id={{$playlist->id}}" class="ms_btn">Follow</a>
+                                    @else
+                                    <a href="playlist_unfollowed?id={{$playlist->id}}" class="ms_btn">Unfollow</a>
                                     @endif
                                 </div>
                             </div>

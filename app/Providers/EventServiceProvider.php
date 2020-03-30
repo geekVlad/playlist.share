@@ -40,6 +40,12 @@ class EventServiceProvider extends ServiceProvider
         LikesRowDeleted::class => [
             DecrementPlaylistLikes::class,
         ],
+        FollowRowCreated::class => [
+            IncrementPlaylistFollows::class,
+        ],
+        FollowRowDeleted::class => [
+            DecrementPlaylistFollows::class,
+        ],
 
 
 
