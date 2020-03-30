@@ -14,7 +14,7 @@
                 </div>
                 <div class="ms_nav_wrapper">
                     <ul>
-                        <li><a href="http://project.test/" class="active" title="Home">
+                        <li><a href="{{ asset('/') }}" class="active" title="Home">
 						<span class="nav_icon">
 							<span class="icon icon_discover"></span>
 						</span>
@@ -22,7 +22,8 @@
 							Homepage
 						</span>
 						</a>
-						<li><a href="http://project.test/myplaylists" title="My Playlists">
+						</li>
+						<li><a href="{{ asset('myplaylists') }}" title="My Playlists">
 						<span class="nav_icon">
 							<span class="icon icon_fe_playlist"></span>
 						</span>
@@ -31,7 +32,16 @@
 						</span>
 						</a>
                         </li>
-                        <li><a href="http://project.test/addplaylist" title="Create Playlist">
+                        <li><a href="{{ asset('myfollows') }}" title="My follows">
+						<span class="nav_icon">
+							<span class="icon icon_favourite"></span>
+						</span>
+						<span class="nav_text">
+							My follows
+						</span>
+						</a>
+						</li>
+                        <li><a href="{{ asset('addplaylist') }}" title="Create Playlist">
 						<span class="nav_icon">
 							<span class="icon icon_c_playlist"></span>
 						</span>
@@ -39,7 +49,6 @@
 							Create playlist
 						</span>
 						</a>
-                        </li>
                         </li>
                         <li><a href="album.html" title="Albums">
 						<span class="nav_icon">

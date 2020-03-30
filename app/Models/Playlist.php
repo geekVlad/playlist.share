@@ -33,6 +33,11 @@ class Playlist extends Model
     {
        return $this->hasMany('App\Models\Likes', 'likes');
     }
+
+    public function followers()
+    {
+       return $this->hasMany('App\Models\User', 'following_playlists');
+    }
     // public function users()
     // {
     //     return $this->belongsToMany('App\Models\User', 'likes');

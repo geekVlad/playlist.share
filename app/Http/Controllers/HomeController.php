@@ -35,6 +35,7 @@ class HomeController extends Controller
     {
         $userId = Auth::id();
 
+        //переписати це через моделі
         $playlists = DB::table('playlists')
             ->join('users', 'playlists.user_id', 'users.id')
             ->where('users.id', $userId)
@@ -65,6 +66,7 @@ class HomeController extends Controller
         return view('addplaylist');
     }
 
+
     public function AddPlaylistPost(Request $request)
     {
         $valid = Validator::make($request->all(), [
@@ -73,17 +75,17 @@ class HomeController extends Controller
             'playlistimage' => 'file|required|mimes:jpg,jpeg,gif',
         ]);
 
-    if ($valid->fails()) {
-      return redirect()
-                ->back()
-                ->withErrors($valid)
-                ->withInput();
-    }
+        if ($valid->fails()) {
+          return redirect()
+                    ->back()
+                    ->withErrors($valid)
+                    ->withInput();
+        }
 
-    if ($request->hasFile('playlistimage')) {
-            $destinationPath = public_path('images/playlist/');
-            $fileName = substr(md5(uniqid()), 0, 20) . "." . $request->playlistimage->extension(); 
-            $request->playlistimage->move($destinationPath, $fileName);
+        if ($request->hasFile('playlistimage')) {
+                $destinationPath = public_path('images/playlist/');
+                $fileName = substr(md5(uniqid()), 0, 20) . "." . $request->playlistimage->extension(); 
+                $request->playlistimage->move($destinationPath, $fileName);
         }
 
 
@@ -95,6 +97,13 @@ class HomeController extends Controller
         $myPlaylists = User::getMyPlaylists();
 
         return view('myPlaylists', compact('myPlaylists'));
+    }
+
+    public function myFollows()
+    {
+        $myFollows = User::getMyFollows();
+
+        return view('myFollows', compact('myFollows'));
     }
 
     public function playlistLiked(Request $request)
