@@ -101,7 +101,7 @@ class PlaylistController extends Controller
         $message = $request->input('message');
         $userId = Auth::id();
         $playlistId = $request->id;
-        $parentId = $request->comment_id;
+        $parentId = $request->input('parent_id');
 
         $comment = Comment::create(['user_id' => $userId, 
             'playlist_id' => $playlistId, 

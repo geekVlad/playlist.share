@@ -12,7 +12,7 @@ class Comment extends Model
     protected $table = 'comments';
 
     protected $fillable = [
-        'user_id', 'playlist_id', 'message'
+        'user_id', 'playlist_id', 'message', 'parent_id'
     ];
 
     protected $attributes = [

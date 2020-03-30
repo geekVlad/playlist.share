@@ -37,10 +37,11 @@
                                             </div>
                                             <ul class="more_option">
                                                 <li class="">
-                                                    <a onclick="
+                                                    <a id="{{$comment->id}}" onclick="
                                                     document.getElementById('reply').hidden = false;
                                                     document.getElementById('cancelReply').hidden = false;
-                                                    document.getElementById('comment').hidden = true;" 
+                                                    document.getElementById('comment').hidden = true;
+                                                    document.getElementById('idInput').value = this.id" 
                                                       href="#message"><span class="opt_icon" >Reply</span></a>
                                                 </li>
                                             </ul>
@@ -79,10 +80,11 @@
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" id="message" name="message" placeholder="Enter your comment" class="form-control">
+                                    <input type="text" id="idInput" name="parent_id" hidden="true">
                                 </div>
                                 <button id="comment" class="save_btn">Send</button>
                                 <button id="reply" class="save_btn " hidden="true" 
-                                formaction="commentreplied?id={{$playlist->id}}&comment_id={{$">Send reply</button>
+                                formaction="commentreplied?id={{$playlist->id}}">Send reply</button>
                                 
                             </form>
                             <button onclick="document.getElementById('reply').hidden = true;
