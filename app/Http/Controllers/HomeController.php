@@ -11,8 +11,8 @@ use App\Models\Follow;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Events\LikesRowCreated;
 use App\Events\LikesRowDeleted;
+use App\Events\FollowRowDeleted;
 
 class HomeController extends Controller
 {
@@ -124,7 +124,7 @@ class HomeController extends Controller
         $playlistId = $request->id;
         $userId = Auth::id();
 
-        $like = Likes::create(['user_id' => $userId, 'playlist_id' => $playlistId]);
+        $follow = Follow::create(['user_id' => $userId, 'playlist_id' => $playlistId]);
 
         return redirect()->back();
     }
@@ -134,9 +134,9 @@ class HomeController extends Controller
         $playlistId = $request->id;
         $userId = Auth::id();
 
-        $like = Likes::where(['user_id' => $userId, 'playlist_id' => $playlistId])->first();
+        $follow = Follow::where(['user_id' => $userId, 'playlist_id' => $playlistId])->first();
 
-        event(new LikesRowDeleted($like));
+        event(new FollowRowDeleted($follow));
         
         return redirect()->back();
     }

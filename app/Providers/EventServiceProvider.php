@@ -10,10 +10,14 @@ use App\Events\CommentsRowCreated;
 use App\Events\CommentsRowDeleted;
 use App\Events\LikesRowCreated;
 use App\Events\LikesRowDeleted;
+use App\Events\FollowRowCreated;
+use App\Events\FollowRowDeleted;
 use App\Listeners\DecremenPlaylistLikes;
-use App\Listeners\IncremenPlaylistLikes;
-use App\Listeners\DecremenPlaylistComments;
-use App\Listeners\IncremenPlaylistComments;
+use App\Listeners\IncrementPlaylistLikes;
+use App\Listeners\DecrementPlaylistComments;
+use App\Listeners\IncrementPlaylistComments;
+use App\Listeners\DecrementPlaylistFollows;
+use App\Listeners\IncrementPlaylistFollows;
 
 
 
