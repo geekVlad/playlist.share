@@ -54,6 +54,15 @@ class User extends Authenticatable
         return $myPlaylists;
     }
 
+    public static function getMyFollows()
+    {
+        $user = Auth::user();
+
+        $myFollows = $user->follows;
+
+        return $myFollows;
+    }
+
     public function playlists()
     {
        return $this->hasMany('App\Models\Playlist');
@@ -62,6 +71,11 @@ class User extends Authenticatable
     public function comments()
     {
        return $this->hasMany('App\Models\Comment');
+    }
+
+    public function follows()
+    {
+        return $this->belongsToMany('App\Models\Playlist', 'following_playlists');
     }
 
     // public function playlists()
