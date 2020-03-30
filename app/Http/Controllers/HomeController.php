@@ -7,6 +7,7 @@ use Validator;
 use App\Models\User;
 use App\Models\Playlist;
 use App\Models\Likes;
+use App\Models\Follow;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -106,7 +107,29 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function playlistUnLiked(Request $request)
+    public function playlistUnliked(Request $request)
+    {
+        $playlistId = $request->id;
+        $userId = Auth::id();
+
+        $like = Likes::where(['user_id' => $userId, 'playlist_id' => $playlistId])->first();
+
+        event(new LikesRowDeleted($like));
+        
+        return redirect()->back();
+    }
+
+    public function playlistFollowed(Request $request)
+    {
+        $playlistId = $request->id;
+        $userId = Auth::id();
+
+        $like = Likes::create(['user_id' => $userId, 'playlist_id' => $playlistId]);
+
+        return redirect()->back();
+    }
+
+    public function playlistUnfollowed(Request $request)
     {
         $playlistId = $request->id;
         $userId = Auth::id();

@@ -22,8 +22,12 @@ Route::post('/addplaylist', 'PlaylistController@AddPlaylistPost')->name('addplay
 Route::get('/playlist', 'PlaylistController@ShowPlaylist')->name('showplaylist');
 
 Route::get('/myplaylists', 'HomeController@myPlaylists')->name('showMyPlaylists');
+
 Route::get('/playlistliked', 'HomeController@playlistLiked');
-Route::get('/playlist_un_liked', 'HomeController@playlistUnLiked');
+Route::get('/playlist_unliked', 'HomeController@playlistUnliked');
+
 Route::post('/playlistcommented', 'PlaylistController@addComment');
+Route::post('/commentreplied', 'PlaylistController@addCommentReply');
 
-
+Route::get('/playlistfollowed', 'HomeController@playlistFollowed');
+Route::get('/playlist_unfollowed', 'HomeController@playlistUnfollowed');
