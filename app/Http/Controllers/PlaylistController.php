@@ -110,8 +110,10 @@ class PlaylistController extends Controller
 
     public function searchPlaylist(Request $request)
     {
-        $search = $request->input('search');
-        
+        $searchRequest = $request->input('search');
+        $results = Playlist::where('title', $searchRequest)->get();
+
+        return view('searchResults', compact('results'));
     }
     
 }
