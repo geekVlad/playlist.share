@@ -57,6 +57,9 @@
                                                     document.getElementById('idInput').value = this.id" 
                                                       href="#message"><span class="opt_icon" >Reply</span></a>
                                                 </li>
+                                                <li class="">
+                                                    <a href='{{ asset("commentdeleted?id=$comment->id") }}'>Delete</a>
+                                                </li>
                                             </ul>
                                         </li>
 

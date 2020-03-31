@@ -5,7 +5,6 @@ namespace App\Listeners;
 use App\Events\CommentsRowCreated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Events\CommentsRowCreated;
 use Illuminate\Support\Facades\DB;
 
 class IncrementPlaylistComments

@@ -69,6 +69,7 @@ class PlaylistController extends Controller
 
         $follow = Follow::where(['user_id' => $userId, 'playlist_id' => $request->id])->first();
 
+
         if(!$playlist){
             return "Такого плейлиста немає";
         }
@@ -106,6 +107,11 @@ class PlaylistController extends Controller
             'parent_id' => $parentId,
         ]);
         return redirect()->back();
+    }
+
+    public function deleteComment(Request $request)
+    {
+        
     }
 
     public function searchPlaylist(Request $request)
