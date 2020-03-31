@@ -29,6 +29,7 @@ Route::get('/playlist_unliked', 'HomeController@playlistUnliked');
 
 Route::post('/playlistcommented', 'PlaylistController@addComment');
 Route::post('/commentreplied', 'PlaylistController@addCommentReply');
+Route::post('/searchplaylist', 'PlaylistController@searchPlaylist');
 
 Route::get('/playlistfollowed', 'HomeController@playlistFollowed');
 Route::get('/playlist_unfollowed', 'HomeController@playlistUnfollowed');

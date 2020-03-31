@@ -107,5 +107,13 @@ class PlaylistController extends Controller
         ]);
         return redirect()->back();
     }
+
+    public function searchPlaylist(Request $request)
+    {
+        $searchRequest = $request->input('search');
+        $results = Playlist::where('title', $searchRequest)->get();
+
+        return view('searchResults', compact('results'));
+    }
     
 }

@@ -13,6 +13,7 @@ class Playlist extends Model
 		'likes' => 0,
 		'comments' => 0,
 	];
+    
 
 	public function users()
     {
