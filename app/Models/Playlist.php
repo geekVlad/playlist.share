@@ -7,12 +7,22 @@ use App\Models;
 
 class Playlist extends Model
 {
+    use Searchable;
+
+
 	protected $table = 'playlists';
 
 	protected $attributes = [
 		'likes' => 0,
 		'comments' => 0,
 	];
+
+
+    public function searchPlaylist($playlistName)
+    {
+        return $this->('title', $playlistName);
+    }
+
 
 	public function users()
     {

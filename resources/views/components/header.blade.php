@@ -2,21 +2,23 @@
             <div class="ms_header">
                 <div class="ms_top_left">
                     <div class="ms_top_search">
-                        <input type="text" class="form-control" placeholder="Search Music Here..">
-                        <span class="search_icon">
-                            <img src="images/svg/search.svg" alt="">
-                        </span>
+                        <form id="search-form" action="/searchplaylist" method="POST">
+                            @csrf
+                            <input type="text" name="search" class="form-control" placeholder="Search Playlists Here..">
+                            <a href="javascript:;" onclick="document.getElementById('search-form').submit()">
+                                <span class="search_icon">
+                                    <img src="images/svg/search.svg" alt="">
+                                </span>
+                            </a>
+
+                        </form>
                     </div>
                     <div class="ms_top_trend">
                         <span><a href="#"  class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">Dream your moments, Until I Met You, Gimme Some Courage, Dark Alley (+8 More)</a></span>
                     </div>
                 </div>
                 <div class="ms_top_right">
-                    <div class="ms_top_lang">
-                        <span data-toggle="modal" data-target="#lang_modal">languages <img src="images/svg/lang.svg" alt=""></span>
-                    </div>
                     <div class="ms_top_btn">
-                        <a href="upload.html" class="ms_btn">upload</a>
                         <a href="javascript:;" class="ms_admin_name">Hello 
                     <span class="ms_pro_name">ns</span>                                                    
                         </a>

@@ -13,7 +13,11 @@
         <div class="ms_content_wrapper padder_top80">
             <!---Header--->
            @include('components.header')
-
+           
+           <div class="ms-banner">
+                <div class="container-fluid">
+                </div>
+            </div>
             <!---Banner--->
             <!-- <div class="ms-banner">
                 <div class="container-fluid">

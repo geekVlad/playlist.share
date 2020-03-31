@@ -12,6 +12,7 @@
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
+        "laravel/scout": "^8.0",
         "laravel/tinker": "^2.0",
         "nesbot/carbon": "^2.31",
         "twbs/bootstrap": "4.4.1"
