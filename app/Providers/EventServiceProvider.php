@@ -12,7 +12,7 @@ use App\Events\LikesRowCreated;
 use App\Events\LikesRowDeleted;
 use App\Events\FollowRowCreated;
 use App\Events\FollowRowDeleted;
-use App\Listeners\DecremenPlaylistLikes;
+use App\Listeners\DecrementPlaylistLikes;
 use App\Listeners\IncrementPlaylistLikes;
 use App\Listeners\DecrementPlaylistComments;
 use App\Listeners\IncrementPlaylistComments;

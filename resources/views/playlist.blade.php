@@ -14,7 +14,44 @@
             <!---Header--->
            @include('components.header')
 
-           <div class="ms-banner">
+           <div class="album_single_data">
+                <div class="album_single_img">
+                    <img src="{{ $playlist->img }}" alt="" class="img-fluid">
+                </div>
+                <div class="album_single_text">
+                    <h2>{{ $playlist->title }}</h2>
+                    <p class="singer_name">By - {{ $playlist->user_id }}</p>
+                    <div class="album_feature">
+                        <a href="#" class="album_date">5 song | 25:10</a>
+                        <a href="#" class="album_date">Created {{ $playlist->created_at }}  | Abc Music Company</a>
+                    </div>
+                    <div class="album_btn">
+                        @if ( $like==null )
+                                    <a href="playlistliked?id={{$playlist->id}}" class="ms_btn">Like</a>
+                                    @else
+                                    <a href="playlist_unliked?id={{$playlist->id}}" class="ms_btn">Unlike</a>
+                                    @endif
+
+                                    @if ( $follow==null )
+                                    <a href="playlistfollowed?id={{$playlist->id}}" class="ms_btn">Follow</a>
+                                    @else
+                                    <a href="playlist_unfollowed?id={{$playlist->id}}" class="ms_btn">Unfollow</a>
+                                    @endif
+                    </div>
+                </div>
+                <div class="album_more_optn ms_more_icon">
+                    <span><img src="images/svg/more.svg" alt=""></span>
+                </div>
+                <ul class="more_option">
+                    <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+                    <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                    <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
+                    <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                    <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
+                </ul>
+            </div>
+
+           <!-- <div class="ms-banner">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
@@ -41,7 +78,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="ms_free_download">
                 <div class="ms_heading">
