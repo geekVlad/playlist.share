@@ -24,9 +24,9 @@
                                 <h1>Artists</h1>
                             </div>
                         </div>
+                        @foreach( $artists as $artist)
                         <div class="col-lg-2 col-md-6">
                             <div class="ms_rcnt_box marger_bottom30">
-                                @foreach( $artists as $artist)
                                 <div class="ms_rcnt_box_img">
                                     <img src="{{ asset($artist->img) }}" alt="" class="img-fluid">
                                     <div class="ms_main_overlay">
@@ -47,12 +47,11 @@
                                     </div>
                                 </div>
                                 <div class="ms_rcnt_box_text">
-                                    <h3><a href='{{ asset(artist?id="$artist->id") }}'>{{ $artist->name }}</a></h3>
+                                    <h3><a href="http://project.test/artist?id={{ $artist->id }}">{{ $artist->name }}</a></h3>
                                 </div>
-                                @endforeach
                             </div>
                         </div>
-                        
+                        @endforeach
                         
                     </div>
                 </div>

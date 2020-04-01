@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Playlist;
 use App\Models\Likes;
 use App\Models\Follow;
+use App\Models\Artist;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -148,5 +149,11 @@ class HomeController extends Controller
         event(new FollowRowDeleted($follow));
         
         return redirect()->back();
+    }
+
+    public function showArtists()
+    {
+        $artists = Artist::all();
+        return view('artists', compact('artists'));
     }
 }
