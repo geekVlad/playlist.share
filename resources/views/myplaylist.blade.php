@@ -21,7 +21,7 @@
                 <div class="album_single_text">
                     <h2>{{ $playlist->title }}</h2>
                     <p class="singer_name">By - {{ $playlist->user->nickname }}</p>
-                    <p>{{ $playlist->description }}</p>
+                    <p class="singer_name">Description: {{ $playlist->description }}</p>
                     <div class="album_feature">
                         <p>Count of songs: {{ $playlist->songs_count }} | Created: {{ $playlist->created_at }} | Last update: {{ $playlist->updated_at }}</p>
                         <p>Likes: {{ $playlist->likes_count }}  | Comments: {{ $playlist->comments_count }}  | Follows: {{ $playlist->follows_count }}</p>

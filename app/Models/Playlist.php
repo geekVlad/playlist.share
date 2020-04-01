@@ -10,8 +10,10 @@ class Playlist extends Model
 	protected $table = 'playlists';
 
 	protected $attributes = [
-		'likes' => 0,
-		'comments' => 0,
+		'likes_count' => 0,
+		'comments_count' => 0,
+        'follows_count' => 0,
+        'songs_count' => 0,
 	];
     
 
