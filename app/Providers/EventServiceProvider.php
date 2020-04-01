@@ -12,12 +12,16 @@ use App\Events\LikesRowCreated;
 use App\Events\LikesRowDeleted;
 use App\Events\FollowRowCreated;
 use App\Events\FollowRowDeleted;
+use App\Events\SongsRowCreated;
+use App\Events\SongsRowDeleted;
 use App\Listeners\DecrementPlaylistLikes;
 use App\Listeners\IncrementPlaylistLikes;
 use App\Listeners\DecrementPlaylistComments;
 use App\Listeners\IncrementPlaylistComments;
 use App\Listeners\DecrementPlaylistFollows;
 use App\Listeners\IncrementPlaylistFollows;
+use App\Listeners\DecrementPlaylistSongs;
+use App\Listeners\IncrementPlaylistSongs;
 
 
 
@@ -49,6 +53,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         FollowRowDeleted::class => [
             DecrementPlaylistFollows::class,
+        ],
+        SongsRowCreated::class => [
+            IncrementPlaylistSongs::class,
+        ],
+        SongsRowDeleted::class => [
+            DecrementPlaylistSongs::class,
         ],
 
 

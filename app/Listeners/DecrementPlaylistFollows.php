@@ -29,7 +29,7 @@ class DecrementPlaylistFollows
     {
         DB::table('playlists')
         ->where('id', '=', $event->playlist_id)
-        ->decrement('follows');
+        ->decrement('follows_count');
 
         $playlistId = $event->playlist_id;
         $userId = $event->user_id;

@@ -20,10 +20,11 @@
                 </div>
                 <div class="album_single_text">
                     <h2>{{ $playlist->title }}</h2>
-                    <p class="singer_name">By - {{ $playlist->user_id }}</p>
+                    <p class="singer_name">By - {{ $playlist->user->nickname }}</p>
+                    <p>{{ $playlist->description }}</p>
                     <div class="album_feature">
-                        <a href="#" class="album_date">5 song | 25:10</a>
-                        <a href="#" class="album_date">Created {{ $playlist->created_at }}  | Abc Music Company</a>
+                        <p>Count of songs: {{ $playlist->songs_count }} | Created: {{ $playlist->created_at }} | Last update: {{ $playlist->updated_at }}</p>
+                        <p>Likes: {{ $playlist->likes_count }}  | Comments: {{ $playlist->comments_count }}  | Follows: {{ $playlist->follows_count }}</p>
                     </div>
                     <div class="album_btn">
                         @if ( $like==null )
@@ -51,35 +52,7 @@
                 </ul>
             </div>
 
-           <!-- <div class="ms-banner">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12">
-                            <div class="ms_banner_img">
-                                <img src="{{ $playlist->img }}" alt="" class="img-fluid">
-                            </div>
-                            <div class="ms_banner_text">
-                                <h1 class="ms_color">{{ $playlist->title }}</h1>
-                                <p>{{ $playlist->description }}</p>
-                                <div class="ms_banner_btn">
-                                    @if ( $like==null )
-                                    <a href="playlistliked?id={{$playlist->id}}" class="ms_btn">Like</a>
-                                    @else
-                                    <a href="playlist_unliked?id={{$playlist->id}}" class="ms_btn">Unlike</a>
-                                    @endif
-
-                                    @if ( $follow==null )
-                                    <a href="playlistfollowed?id={{$playlist->id}}" class="ms_btn">Follow</a>
-                                    @else
-                                    <a href="playlist_unfollowed?id={{$playlist->id}}" class="ms_btn">Unfollow</a>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
+            <!-- Main section starts -->
             <div class="ms_free_download">
                 <div class="ms_heading">
                     <h1>Songs</h1>

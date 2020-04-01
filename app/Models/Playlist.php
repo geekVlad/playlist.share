@@ -20,6 +20,11 @@ class Playlist extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
     public function songs()
     {
         return $this->belongsToMany('App\Models\Song', 'playlists_songs');
@@ -39,8 +44,4 @@ class Playlist extends Model
     {
        return $this->hasMany('App\Models\User', 'following_playlists');
     }
-    // public function users()
-    // {
-    //     return $this->belongsToMany('App\Models\User', 'likes');
-    // }
 }

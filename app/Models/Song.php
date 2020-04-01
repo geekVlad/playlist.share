@@ -9,10 +9,10 @@ class Song extends Model
 {
     protected $table = 'songs';
 
-    // public function albums()
-    // {
-    //     return $this->belongsTo('Models\Album');
-    // }
+    public function albums()
+    {
+        return $this->belongsTo('App\Models\Album');
+    }
 
     public function artists()
     {
