@@ -78,13 +78,4 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Playlist', 'following_playlists');
     }
 
-    // public function playlists()
-    // {
-    //    return $this->belongsTo('App\Models\Playlist', 'following_playlists');
-    // }
-
-    // public function playlists()
-    // {
-    //    return $this->belongsTo('App\Models\Playlist', 'likes');
-    // }
 }

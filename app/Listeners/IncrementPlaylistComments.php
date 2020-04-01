@@ -29,6 +29,6 @@ class IncrementPlaylistComments
     {
         DB::table('playlists')
         ->where('id', '=', $event->playlist_id)
-        ->increment('comments');
+        ->increment('comments_count');
     }
 }

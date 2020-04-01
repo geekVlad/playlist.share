@@ -9,10 +9,10 @@ class Artist extends Model
 {
     protected $table = 'artists';
 
-    // public function albums()
-    // {
-    //     return $this->hasMany('Models\Album');
-    // }
+    public function albums()
+    {
+        return $this->hasMany('App\Models\Album');
+    }
 
     public function songs()
     {

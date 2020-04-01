@@ -29,6 +29,6 @@ class IncrementPlaylistLikes
     {
         DB::table('playlists')
         ->where('id', '=', $event->playlist_id)
-        ->increment('likes');
+        ->increment('likes_count');
     }
 }
