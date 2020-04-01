@@ -45,7 +45,8 @@
                                 </ul>
                             </li>
                             <li class="text-center"><a href="#"><span class="ms_close">
-                                    <img src="images/svg/close.svg" alt=""></span></a></li>
+                                    <img src="images/svg/close.svg" alt=""></span></a>
+                            </li>
                         </ul>
                         @endforeach
                     </div>

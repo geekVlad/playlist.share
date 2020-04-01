@@ -43,9 +43,9 @@
                                                 </a>
 
                                                 
-                                                <div class="action">
-                                                    <span class="que_more"><img src="images/svg/more.svg"></span>
-                                                </div> 
+                                            <div class="action">
+                                                <span class="que_more"><img src="images/svg/more.svg"></span>
+                                            </div> 
 
                                             </div>
                                             <ul class="more_option">
@@ -57,6 +57,11 @@
                                                     document.getElementById('idInput').value = this.id" 
                                                       href="#message"><span class="opt_icon" >Reply</span></a>
                                                 </li>
+                                                @if( ($user_id == $playlist->user_id) || ($user_id == $comment->user_id) )
+                                                <li class="">
+                                                    <a href='{{ asset("commentdeleted?id=$comment->id") }}'>Delete</a>
+                                                </li>
+                                                @endif
                                             </ul>
                                         </li>
 
@@ -79,6 +84,19 @@
                                                         </span>
                                                     </div>
                                                 </a>
+                                                @if( ($user_id == $playlist->user_id) || ($user_id == $children->user_id) )
+                                                <div class="action">
+                                                    <span class="que_more"><img src="images/svg/more.svg"></span>
+                                                </div> 
+
+                                                <ul class="more_option">
+                                                    
+                                                    <li class="">
+                                                        <a href='{{ asset("commentdeleted?id=$children->id") }}'>Delete</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                @endif
                                             </div>
                                         </li>
                                         @endif
