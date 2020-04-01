@@ -46,7 +46,7 @@ class HomeController extends Controller
             ->whereDate('updated_at', '>', Carbon::now()->subDays(7))
             ->select('playlists.*')
             ->limit(15)
-            ->orderBy('likes', 'desc')
+            ->orderBy('likes_count', 'desc')
             ->get();
 
         $newPlaylists = DB::table('playlists')

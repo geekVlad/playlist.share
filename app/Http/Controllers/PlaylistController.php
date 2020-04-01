@@ -63,7 +63,8 @@ class PlaylistController extends Controller
 
         $like = Likes::where(['user_id' => $userId, 'playlist_id' => $request->id])->first();
 
-        $playlist = Playlist::with(['songs', 'user'])->where('id', $request->id)->first();
+        $playlist = Playlist::with(['songs.artist', 'songs.album', 'user'])->where('id', $request->id)->first();
+       // dd($playlist->songs);
 
         $comments = Comment::with('user')->with('childrens')->where('playlist_id', $playlist->id)->orderBy('updated_at', 'Desc')->get();
 

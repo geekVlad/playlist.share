@@ -61,18 +61,27 @@
                     <div class="album_list_wrapper">
                         <ul class="album_list_name">
                             <li>#</li>
-                            <li>Song Title</li>
-                            <li>Album</li>
+                            <li class="text-left">Song title</li>
+                            <li class="text-center">Album</li>
+                            <li class="text-center">Artist</li>
                             <li class="text-center">Duration</li>
                             <li class="text-center">Add To Favourites</li>
                             <li class="text-center">More</li>
                         </ul>
                         @foreach( $playlist->songs as $song)
                         <ul>
-                            <li><a href="#"><span class="play_no">01</span><span class="play_hover"></span></a></li>
-                            <li><a href="#">{{ $song->title }}</a></li>
-                            <li><a href="#">{{ $song->artist_id }}</a></li>
-                            <li class="text-center"><a href="#">5:26</a></li>
+                            <li><a href="#"><span class="play_no">
+                                @if( $loop->iteration < 10 )
+                                        0{{ $loop->iteration }}
+                                        @else
+                                        {{ $loop->iteration }}
+                                        @endif
+                            </span><span class="play_hover"></span></a>
+                            </li>
+                            <li class="text-left"><a href="#">{{ $song->title }}</a></li>
+                            <li class="text-center"><a href="#">{{ $song->album->title }}</a></li>
+                            <li class="text-center"><a href="#">{{ $song->artist->name }}</a></li>
+                            <li class="text-center"><a href="#">{{ $song->duration }}</a></li>
                             <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
                             <li class="text-center ms_more_icon"><a href="javascript:;"><span class="ms_icon1 ms_active_icon"></span></a>
                                 <ul class="more_option">

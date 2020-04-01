@@ -9,12 +9,12 @@ class Song extends Model
 {
     protected $table = 'songs';
 
-    public function albums()
+    public function album()
     {
         return $this->belongsTo('App\Models\Album');
     }
 
-    public function artists()
+    public function artist()
     {
         return $this->belongsTo('App\Models\Artist');
     }
