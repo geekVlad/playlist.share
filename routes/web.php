@@ -29,7 +29,7 @@ Route::get('/playlist_unliked', 'HomeController@playlistUnliked');
 
 Route::post('/playlistcommented', 'PlaylistController@addComment');
 Route::post('/commentreplied', 'PlaylistController@addCommentReply');
-Route::post('/commentdeleted', 'PlaylistController@deleteComment');
+Route::get('/commentdeleted', 'PlaylistController@deleteComment');
 
 Route::post('/searchplaylist', 'PlaylistController@searchPlaylist');
 

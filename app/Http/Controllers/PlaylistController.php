@@ -75,10 +75,10 @@ class PlaylistController extends Controller
         }
 
         if(Auth::user()->id == $playlist->user_id){
-            return view('myplaylist', ['playlist' => $playlist, 'comments' => $comments, ]);
+            return view('myplaylist', ['playlist' => $playlist, 'comments' => $comments, 'user_id' => $userId]);
         }
 
-        return view('playlist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments, 'follow' => $follow, ]);
+        return view('playlist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments, 'follow' => $follow, 'user_id' => $userId]);
     }
 
     public function addComment(Request $request)
@@ -111,7 +111,8 @@ class PlaylistController extends Controller
 
     public function deleteComment(Request $request)
     {
-        
+        Comment::destroy($request->id);
+        return redirect()->back();
     }
 
     public function searchPlaylist(Request $request)
