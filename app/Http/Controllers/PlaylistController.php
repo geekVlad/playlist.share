@@ -9,6 +9,8 @@ use App\Models\Song;
 use App\Models\Likes;
 use App\Models\Comment;
 use App\Models\Follow;
+use App\Models\Album;
+use App\Models\Artist;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -115,12 +117,20 @@ class PlaylistController extends Controller
         return redirect()->back();
     }
 
-    public function searchPlaylist(Request $request)
+    public function search(Request $request)
     {
         $searchRequest = $request->input('search');
-        $results = Playlist::where('title', $searchRequest)->get();
+        $playlists = Playlist::with('user')->where('title', $searchRequest)->get();
+        $albums = Album::with('artist')->where('title', $searchRequest)->get();
+        $songs = Song::with('artist')->where('title', $searchRequest)->get();
+        $artists = Artist::where('name', $searchRequest)->get();
 
-        return view('searchResults', compact('results'));
+        return view('searchResults', 
+            ['playlists' => $playlists, 
+            'albums' => $albums,
+            'songs' => $songs,
+            'artists' => $artists,
+        ]);
     }
     
 }

@@ -2,9 +2,9 @@
             <div class="ms_header">
                 <div class="ms_top_left">
                     <div class="ms_top_search">
-                        <form id="search-form" action="/searchplaylist" method="POST">
+                        <form id="search-form" action="/search" method="POST">
                             @csrf
-                            <input type="text" name="search" class="form-control" placeholder="Search Playlists Here..">
+                            <input type="text" name="search" class="form-control" placeholder="Search">
                             <a href="javascript:;" onclick="document.getElementById('search-form').submit()">
                                 <span class="search_icon">
                                     <img src="images/svg/search.svg" alt="">

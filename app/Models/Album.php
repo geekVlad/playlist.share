@@ -9,7 +9,7 @@ class Album extends Model
 {
     protected $table = 'albums';
 
-    public function artists()
+    public function artist()
     {
         return $this->belongsTo('App\Models\Artist');
     }
