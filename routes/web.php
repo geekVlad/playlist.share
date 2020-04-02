@@ -23,6 +23,10 @@ Route::get('/playlist', 'PlaylistController@ShowPlaylist')->name('showplaylist')
 
 Route::get('/myplaylists', 'HomeController@myPlaylists')->name('showMyPlaylists');
 Route::get('/myfollows', 'HomeController@myFollows');
+Route::get('/artists', 'HomeController@showArtists');
+Route::get('/artist', 'HomeController@showArtist');
+Route::get('/album', 'HomeController@showAlbum');
+Route::get('/albums', 'HomeController@showAlbums');
 
 Route::get('/playlistliked', 'HomeController@playlistLiked');
 Route::get('/playlist_unliked', 'HomeController@playlistUnliked');

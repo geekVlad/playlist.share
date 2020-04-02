@@ -8,6 +8,9 @@ use App\Models\User;
 use App\Models\Playlist;
 use App\Models\Likes;
 use App\Models\Follow;
+use App\Models\Artist;
+use App\Models\Album;
+use App\Models\Song;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -148,5 +151,39 @@ class HomeController extends Controller
         event(new FollowRowDeleted($follow));
         
         return redirect()->back();
+    }
+
+    public function showArtists()
+    {
+        $artists = Artist::all();
+        return view('artists', compact('artists'));
+    }
+
+    public function showAlbums()
+    {
+        $albums = Album::all();
+        return view('albums', compact('albums'));
+    }
+
+    public function showArtist(Request $request)
+    {
+        $artistId = $request->id;
+        $artist = Artist::find($artistId);
+
+        $singles = Song::where([ ['artist_id', $artistId], ['album_id', 1], ])->get();
+
+        $albums = Album::where('artist_id', $artistId)->get();//sort by release date
+
+        return view('artist', ['artist' => $artist, 'singles' => $singles, 'albums' => $albums, ]);
+    }
+
+    public function showAlbum(Request $request)
+    {
+        $albumId = $request->id;
+        $album = Artist::find($albumId);
+
+        $songs = Song::where('album_id', $albumId)->get();
+
+        return view('album', ['songs' => $songs, 'album' => $album, ]);
     }
 }
