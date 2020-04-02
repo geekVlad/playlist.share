@@ -41,7 +41,7 @@
             </div>
 
             <!--- Albums --->
-
+            @if( (count($albums) != 0))
             <div class="ms_top_artist">
                 <div class="container-fluid">
                     <div class="row">
@@ -83,7 +83,9 @@
                     </div>
                 </div>
             </div>
+            @endif
 
+            @if( (count($singles) != 0))
             <!----Singles ---->
             <div class="album_inner_list">
                 <div class="ms_heading">
@@ -124,9 +126,10 @@
                     @endforeach
                 </div>
             </div>
-            <div class="ms_view_more padder_bottom20">
+            @endif
+            <!-- <div class="ms_view_more padder_bottom20">
                 <a href="#" class="ms_btn">view more</a>
-            </div>
+            </div> -->
 
         </div>
             

@@ -23,6 +23,8 @@
                 </div>
                 <div class="album_single_text">
                     <h2>{{ $album->title }}</h2>
+                    <p>Artist: <a href="http://project.test/artist?id={{ $album->artist->id }}">{{ $album->artist->name }}</a></p>
+                    <p>Released: {{ $album->released_date }}</p>
                     <div class="album_btn">
                         <a href="#" class="ms_btn play_btn"><span class="play_all"><img src="images/svg/play_all.svg" alt="">Play All</span><span class="pause_all"><img src="images/svg/pause_all.svg" alt="">Pause</span></a>
                         <a href="#" class="ms_btn"><span class="play_all"><img src="images/svg/add_q.svg" alt="">Add To Queue</span></a>
