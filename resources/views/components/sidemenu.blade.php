@@ -50,7 +50,7 @@
 						</span>
 						</a>
                         </li>
-                        <li><a href="album.html" title="Albums">
+                        <li><a href="{{ asset('albums') }}" title="Albums">
 						<span class="nav_icon">
 							<span class="icon icon_albums"></span>
 						</span>

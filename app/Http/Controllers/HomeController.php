@@ -159,6 +159,12 @@ class HomeController extends Controller
         return view('artists', compact('artists'));
     }
 
+    public function showAlbums()
+    {
+        $albums = Album::all();
+        return view('albums', compact('albums'));
+    }
+
     public function showArtist(Request $request)
     {
         $artistId = $request->id;
