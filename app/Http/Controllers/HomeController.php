@@ -180,7 +180,7 @@ class HomeController extends Controller
     public function showAlbum(Request $request)
     {
         $albumId = $request->id;
-        $album = Artist::find($albumId);
+        $album = Album::with('artist')->find($albumId);
 
         $songs = Song::where('album_id', $albumId)->get();
 
