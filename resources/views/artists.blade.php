@@ -16,7 +16,7 @@
 
             <!--- Artists --->
 
-             <div class="ms_top_artist">
+            <div class="ms_top_artist">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
