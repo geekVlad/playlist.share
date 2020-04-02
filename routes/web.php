@@ -35,7 +35,7 @@ Route::post('/playlistcommented', 'PlaylistController@addComment');
 Route::post('/commentreplied', 'PlaylistController@addCommentReply');
 Route::get('/commentdeleted', 'PlaylistController@deleteComment');
 
-Route::post('/searchplaylist', 'PlaylistController@searchPlaylist');
+Route::post('/search', 'PlaylistController@search');
 
 Route::get('/playlistfollowed', 'HomeController@playlistFollowed');
 Route::get('/playlist_unfollowed', 'HomeController@playlistUnfollowed');
