@@ -88,6 +88,15 @@ class HomeController extends Controller
 
     }
 
+    public function showUserPlaylists(Request $request)
+    {
+        $user = User::find($request->id)->first();
+
+        $userPlaylists = Playlist::where('user_id', $user->id)->get();
+
+        return view('user', ['userPlaylists' => $userPlaylists, 'user' => $user, ]);
+    }
+
     public function myPlaylists()
     {
         $myPlaylists = User::getMyPlaylists();
