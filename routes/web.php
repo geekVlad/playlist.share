@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/addplaylist', 'PlaylistController@AddPlaylistGet')->name('addplaylistget');
 Route::post('/addplaylist', 'PlaylistController@AddPlaylistPost')->name('addplaylistpost');
 Route::get('/playlist', 'PlaylistController@ShowPlaylist')->name('showplaylist');
+Route::get('/user', 'HomeController@showUserPlaylists');
 
 Route::get('/myplaylists', 'HomeController@myPlaylists')->name('showMyPlaylists');
 Route::get('/myfollows', 'HomeController@myFollows');

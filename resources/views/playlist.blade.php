@@ -20,7 +20,7 @@
                 </div>
                 <div class="album_single_text">
                     <h2>{{ $playlist->title }}</h2>
-                    <p class="singer_name">By - {{ $playlist->user->nickname }}</p>
+                    <p class="singer_name">By - <a href="http://project.test/user?id={{ $playlist->user->id }}">{{ $playlist->user->nickname }}</a></p>
                     <p class="singer_name">Description: {{ $playlist->description }}</p>
                     <div class="album_feature">
                         <p>Count of songs: {{ $playlist->songs_count }} | Created: {{ $playlist->created_at }} | Last update: {{ $playlist->updated_at }}</p>
