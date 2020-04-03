@@ -40,3 +40,5 @@ Route::post('/search', 'PlaylistController@search');
 
 Route::get('/playlistfollowed', 'HomeController@playlistFollowed');
 Route::get('/playlist_unfollowed', 'HomeController@playlistUnfollowed');
+
+Route::get('/addexistingsong', 'PlaylistController@addExistingSong');
