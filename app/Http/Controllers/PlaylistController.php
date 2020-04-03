@@ -120,6 +120,7 @@ class PlaylistController extends Controller
     public function search(Request $request)
     {
         $searchRequest = $request->input('search');
+        
         $playlists = Playlist::with('user')->where('title', $searchRequest)->get();
         $albums = Album::with('artist')->where('title', $searchRequest)->get();
         $songs = Song::with('artist')->where('title', $searchRequest)->get();

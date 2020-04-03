@@ -38,29 +38,22 @@ class HomeController extends Controller
     {
         $userId = Auth::id();
 
-        //переписати це через моделі
-        $playlists = DB::table('playlists')
-            ->join('users', 'playlists.user_id', 'users.id')
-            ->where('users.id', $userId)
-            ->select('playlists.*')
-            ->get();
+        $myPlaylists = Playlist::with('user')->where('user_id', $userId)->get();
 
-        $top15 = DB::table('playlists')
+        $top15 = Playlist::with('user')
             ->whereDate('updated_at', '>', Carbon::now()->subDays(7))
-            ->select('playlists.*')
             ->limit(15)
             ->orderBy('likes_count', 'desc')
             ->get();
 
-        $newPlaylists = DB::table('playlists')
-            ->whereDate('updated_at', '>', Carbon::now()->subHours(23))
-            ->select('playlists.*')
+        $newPlaylists = Playlist::with('user')
+            ->whereDate('created_at', '>', Carbon::now()->subHours(23))
             ->limit(10)
             ->get();
 
-        return view('home', ['playlists' => $playlists, 
-                            'top15' => $top15,
-                            'newPlaylists' => $newPlaylists,
+        return view('home', ['myPlaylists' => $myPlaylists, 
+                        'top15' => $top15,
+                        'newPlaylists' => $newPlaylists,
                     ]);
     }
 
