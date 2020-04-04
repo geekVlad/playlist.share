@@ -163,7 +163,7 @@ class HomeController extends Controller
 
     public function showAlbums()
     {
-        $albums = Album::all();
+        $albums = Album::where('title', '!=', 'single')->get();//single is not an album to be displayed in such category
         return view('albums', compact('albums'));
     }
 
@@ -181,11 +181,14 @@ class HomeController extends Controller
 
     public function showAlbum(Request $request)
     {
+        $user = Auth::user();
+        $user->with('playlists');
+
         $albumId = $request->id;
         $album = Album::with('artist')->find($albumId);
 
         $songs = Song::where('album_id', $albumId)->get();
 
-        return view('album', ['songs' => $songs, 'album' => $album, ]);
+        return view('album', ['songs' => $songs, 'album' => $album, 'user' => $user, ]);
     }
 }
