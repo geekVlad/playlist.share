@@ -90,8 +90,8 @@ class HomeController extends Controller
 
     public function showUserPlaylists(Request $request)
     {
-        $user = User::find($request->id)->first();
 
+        $user = User::find($request->id);
         $userPlaylists = Playlist::where('user_id', $user->id)->get();
 
         return view('user', ['userPlaylists' => $userPlaylists, 'user' => $user, ]);
@@ -163,12 +163,15 @@ class HomeController extends Controller
 
     public function showAlbums()
     {
-        $albums = Album::all();
+        $albums = Album::where('title', '!=', 'single')->get();//single is not an album to be displayed in such category
         return view('albums', compact('albums'));
     }
 
     public function showArtist(Request $request)
     {
+        $user = Auth::user();
+        $user->with('playlists');
+
         $artistId = $request->id;
         $artist = Artist::find($artistId);
 
@@ -176,16 +179,21 @@ class HomeController extends Controller
 
         $albums = Album::where('artist_id', $artistId)->get();//sort by release date
 
-        return view('artist', ['artist' => $artist, 'singles' => $singles, 'albums' => $albums, ]);
+        return view('artist', ['artist' => $artist, 'singles' => $singles, 'albums' => $albums, 
+            'user' => $user, ]);
     }
 
     public function showAlbum(Request $request)
     {
+        $user = Auth::user();
+        $user->with('playlists');
+
         $albumId = $request->id;
         $album = Album::with('artist')->find($albumId);
 
         $songs = Song::where('album_id', $albumId)->get();
 
-        return view('album', ['songs' => $songs, 'album' => $album, ]);
+        return view('album', ['songs' => $songs, 'album' => $album, 
+            'user' => $user, ]);
     }
 }

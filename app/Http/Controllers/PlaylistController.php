@@ -11,6 +11,7 @@ use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\Album;
 use App\Models\Artist;
+use App\Models\playlist_song;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -61,15 +62,16 @@ class PlaylistController extends Controller
 
     public function ShowPlaylist(Request $request)
     {
-        $userId = Auth::id();
+        $user = Auth::user();
+        $user->with('playlists');
 
-        $like = Likes::where(['user_id' => $userId, 'playlist_id' => $request->id])->first();
+        $like = Likes::where(['user_id' => $user->id, 'playlist_id' => $request->id])->first();
 
         $playlist = Playlist::with(['songs.artist', 'songs.album', 'user'])->where('id', $request->id)->first();
 
         $comments = Comment::with('user')->with('childrens')->where('playlist_id', $playlist->id)->orderBy('updated_at', 'Desc')->get();
 
-        $follow = Follow::where(['user_id' => $userId, 'playlist_id' => $request->id])->first();
+        $follow = Follow::where(['user_id' => $user->id, 'playlist_id' => $request->id])->first();
 
 
         if(!$playlist){
@@ -77,10 +79,10 @@ class PlaylistController extends Controller
         }
 
         if(Auth::user()->id == $playlist->user_id){
-            return view('myplaylist', ['playlist' => $playlist, 'comments' => $comments, 'user_id' => $userId]);
+            return view('myplaylist', ['playlist' => $playlist, 'comments' => $comments, 'user' => $user]);
         }
 
-        return view('playlist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments, 'follow' => $follow, 'user_id' => $userId]);
+        return view('playlist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments, 'follow' => $follow, 'user' => $user]);
     }
 
     public function addComment(Request $request)
@@ -120,6 +122,9 @@ class PlaylistController extends Controller
     public function search(Request $request)
     {
         $searchRequest = $request->input('search');
+
+        $user = Auth::user();
+        $user->with('playlists');
         
         $playlists = Playlist::with('user')->where('title', $searchRequest)->get();
         $albums = Album::with('artist')->where('title', $searchRequest)->get();
@@ -131,7 +136,30 @@ class PlaylistController extends Controller
             'albums' => $albums,
             'songs' => $songs,
             'artists' => $artists,
+            'user' => $user,
+            ]);
+    }
+
+    public function addExistingSong(Request $request)
+    {
+        
+        $playlistId = $request->playlist_id;
+        $songId = $request->song_id;
+
+        if(playlist_song::where([ ['playlist_id', $playlistId], ['song_id', $songId] ])->first()){
+            return view('songExistsInPlaylist');
+        }
+
+        $add_song = playlist_song::create([
+            'playlist_id' => $playlistId, 
+            'song_id' => $songId,
         ]);
+        return redirect()->back();
+    }
+
+    public function goBack(Request $request)
+    {
+        return redirect( url()->previous() );
     }
     
 }

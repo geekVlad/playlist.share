@@ -57,7 +57,7 @@
                                                     document.getElementById('idInput').value = this.id" 
                                                       href="#message"><span class="opt_icon" >Reply</span></a>
                                                 </li>
-                                                @if( ($user_id == $playlist->user_id) || ($user_id == $comment->user_id) )
+                                                @if( ($user->id == $playlist->user_id) || ($user->id == $comment->user_id) )
                                                 <li class="">
                                                     <a href='{{ asset("commentdeleted?id=$comment->id") }}'>Delete</a>
                                                 </li>
@@ -84,7 +84,7 @@
                                                         </span>
                                                     </div>
                                                 </a>
-                                                @if( ($user_id == $playlist->user_id) || ($user_id == $children->user_id) )
+                                                @if( ($user->id == $playlist->user_id) || ($user->id == $children->user_id) )
                                                 <div class="action">
                                                     <span class="que_more"><img src="images/svg/more.svg"></span>
                                                 </div> 
