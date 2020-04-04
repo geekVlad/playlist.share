@@ -20,9 +20,11 @@
             <div class="album_single_data">
                 <div class="album_single_text">
                     <h2>This song already exists in selected playlist</h2>
+                    @if( url()->previous() != 'http://project.test/search' )
                     <div class="album_btn">
                         <a href="{{ url()->previous() }}" class="ms_btn">Go back</a>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

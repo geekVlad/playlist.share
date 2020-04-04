@@ -157,9 +157,9 @@ class PlaylistController extends Controller
         return redirect()->back();
     }
 
-    public function goBack()
+    public function goBack(Request $request)
     {
-        return back();
+        return redirect( url()->previous() );
     }
     
 }
