@@ -138,14 +138,24 @@ class PlaylistController extends Controller
 
     public function addExistingSong(Request $request)
     {
+        
         $playlistId = $request->playlist_id;
         $songId = $request->song_id;
+
+        if(playlist_song::where([ ['playlist_id', $playlistId], ['song_id', $songId] ])->first()){
+            return view('songExistsInPlaylist');
+        }
 
         $add_song = playlist_song::create([
             'playlist_id' => $playlistId, 
             'song_id' => $songId,
         ]);
         return redirect()->back();
+    }
+
+    public function goBack()
+    {
+        return back();
     }
     
 }
