@@ -122,6 +122,9 @@ class PlaylistController extends Controller
     public function search(Request $request)
     {
         $searchRequest = $request->input('search');
+
+        $user = Auth::user();
+        $user->with('playlists');
         
         $playlists = Playlist::with('user')->where('title', $searchRequest)->get();
         $albums = Album::with('artist')->where('title', $searchRequest)->get();
@@ -133,6 +136,7 @@ class PlaylistController extends Controller
             'albums' => $albums,
             'songs' => $songs,
             'artists' => $artists,
+            'user' => $user,
             ]);
     }
 

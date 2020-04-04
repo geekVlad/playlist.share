@@ -89,7 +89,7 @@
                                     <span class="ms_more_icon" data-other="1">
                                         <img src="images/svg/more.svg" alt="">
                                     </span>
-                                </div>
+                            </div>
                                 <ul class="more_option">
                                     @foreach( $user->playlists as $userPlaylist)
                                     <li><a href="http://project.test/addexistingsong?playlist_id={{ $userPlaylist->id }}&song_id={{ $song->id }}">

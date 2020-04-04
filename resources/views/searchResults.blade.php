@@ -149,16 +149,17 @@
                                     </div>
                                 </div>
                                 <div class="weekly_right">
+                                    <span class="w_song_time">Add To Playlist</span>
                                     <span class="ms_more_icon" data-other="1">
                                         <img src="images/svg/more.svg" alt="">                                  
                                     </span>
                                 </div>
                                 <ul class="more_option">
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
+                                    @foreach( $user->playlists as $userPlaylist)
+                                    <li><a href="http://project.test/addexistingsong?playlist_id={{ $userPlaylist->id }}&song_id={{ $song->id }}">
+                                        <span class="opt_icon"><span class="icon icon_playlst"></span></span>{{ $userPlaylist->title }}
+                                    </a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <div class="ms_divider"></div>

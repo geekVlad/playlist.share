@@ -169,6 +169,9 @@ class HomeController extends Controller
 
     public function showArtist(Request $request)
     {
+        $user = Auth::user();
+        $user->with('playlists');
+
         $artistId = $request->id;
         $artist = Artist::find($artistId);
 
@@ -176,7 +179,8 @@ class HomeController extends Controller
 
         $albums = Album::where('artist_id', $artistId)->get();//sort by release date
 
-        return view('artist', ['artist' => $artist, 'singles' => $singles, 'albums' => $albums, ]);
+        return view('artist', ['artist' => $artist, 'singles' => $singles, 'albums' => $albums, 
+            'user' => $user, ]);
     }
 
     public function showAlbum(Request $request)
@@ -189,6 +193,7 @@ class HomeController extends Controller
 
         $songs = Song::where('album_id', $albumId)->get();
 
-        return view('album', ['songs' => $songs, 'album' => $album, 'user' => $user, ]);
+        return view('album', ['songs' => $songs, 'album' => $album, 
+            'user' => $user, ]);
     }
 }
