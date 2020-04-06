@@ -5,7 +5,7 @@ namespace App\Listeners;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Events\CommentsRowDeleted;
-use Illuminate\Support\Facades\DB;
+use App\Models\Playlist;
 
 class DecrementPlaylistComments
 {
@@ -27,8 +27,7 @@ class DecrementPlaylistComments
      */
     public function handle(CommentsRowDeleted $event)
     {
-        DB::table('playlists')
-        ->where('id', '=', $event->playlist_id)
+        Playlist::where('id', '=', $event->playlist_id)
         ->decrement('comments_count');
     }
 }

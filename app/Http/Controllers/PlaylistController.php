@@ -156,10 +156,4 @@ class PlaylistController extends Controller
         ]);
         return redirect()->back();
     }
-
-    public function goBack(Request $request)
-    {
-        return redirect( url()->previous() );
-    }
-    
 }

@@ -6,7 +6,7 @@ use App\Events\LikesRowDeleted;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\DB;
-use App\Models\Likes;
+use App\Models\Playlist;
 
 class DecrementPlaylistLikes
 {
@@ -28,8 +28,7 @@ class DecrementPlaylistLikes
      */
     public function handle(LikesRowDeleted $event)
     {
-        DB::table('playlists')
-        ->where('id', '=', $event->playlist_id)
+        Playlist::where('id', '=', $event->playlist_id)
         ->decrement('likes_count');
 
         $playlistId = $event->playlist_id;
