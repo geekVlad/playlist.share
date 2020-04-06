@@ -19,7 +19,12 @@ Auth::routes();
 
 Route::get('/addplaylist', 'PlaylistController@AddPlaylistGet')->name('addplaylistget');
 Route::post('/addplaylist', 'PlaylistController@AddPlaylistPost')->name('addplaylistpost');
+Route::get('/editplaylist', 'PlaylistController@EditPlaylistGet')->name('editlaylistget');
+Route::post('/editplaylist', 'PlaylistController@EditPlaylistPost')->name('editplaylistpost');
 Route::get('/playlist', 'PlaylistController@ShowPlaylist')->name('showplaylist');
+Route::post('/getartistajax', 'PlaylistController@getArtistAjax')->name('getartistajax');
+Route::post('/getalbumajax', 'PlaylistController@getAlbumAjax')->name('getalbumajax');
+Route::post('/addsong', 'PlaylistController@AddSong')->name('addsong');
 
 Route::get('/myplaylists', 'HomeController@myPlaylists')->name('showMyPlaylists');
 Route::get('/playlistliked', 'HomeController@playlistLiked');

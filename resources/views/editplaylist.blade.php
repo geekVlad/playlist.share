@@ -14,12 +14,12 @@
             <!---Header--->
            @include('components.header')
            <div class="ms_profile_wrapper">
-                <h1>Новий плейлист</h1>
-                <form  method="POST" runat="server" action="/addplaylist" enctype="multipart/form-data">
+                <h1>Редагувати плейлист</h1>
+                <form method="POST" runat="server" action="/editplaylist" enctype="multipart/form-data">
 	                <div class="ms_profile_box">
 	                	<label for="myInputFile">
 	  						<div class="ms_pro_img">
-	                        	<img id="img_url" src="{{asset('images/playlist/defaultPlaylistImage.jpg')}}" alt="" class="">
+	                        	<img id="img_url" src="{{ asset('images/playlist/'.$playlist->img)}}" alt="" class="">
 	                       		 <div class="pro_img_overlay">
 	                            	<i class="fa_icon edit_icon"></i>
 	                       		 </div>
@@ -29,30 +29,31 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                              @enderror
 						</label>
+						<script type="text/javascript">
+							function img_pathUrl(input){
+							    $('#img_url')[0].src = (window.URL ? URL : webkitURL).createObjectURL(input.files[0]);
+							}
+						</script>
 	                    <div class="ms_pro_form addplaylist">
 	                        @csrf
 	                        <label>Назва плейлиста</label>
-	                        <input type="text" name="title" value="{{old('title')}}" class="form-control">
+	                        <input type="text" name="title" value="{{old('title') ? old('title') : $playlist->title}}" class="form-control">
 	                         @error('title')
                                 <div class="alert alert-danger">{{ $message }}</div>
                              @enderror
 	                        <label>Опис плейлиста</label>
-	                        <textarea type="text" name="description" class="form-control text-area-description">{{old('description')}}</textarea>
+	                        <textarea type="text" name="description" class="form-control text-area-description">{{old('description') ? old('description') : $playlist->description}}</textarea>
 	                        @error('description')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
 		                    <div class="pro-form-btn text-center marger_top15">
-		                        <button class="ms_btn">Створити</button>
+		                        <button class="ms_btn">Змінити</button>
 		                    </div>
 	                    </div>
 	                </div>
+	                 <input type="hidden" name="id" value="{{$playlist->id}}">
                 </form>
             </div>
 		</div>
 	</div>
-	<script type="text/javascript">0
-		function img_pathUrl(input){
-		    $('#img_url')[0].src = (window.URL ? URL : webkitURL).createObjectURL(input.files[0]);
-		}
-	</script>
 @endsection
