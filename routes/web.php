@@ -19,26 +19,26 @@ Auth::routes();
 
 Route::get('/addplaylist', 'PlaylistController@AddPlaylistGet')->name('addplaylistget');
 Route::post('/addplaylist', 'PlaylistController@AddPlaylistPost')->name('addplaylistpost');
-Route::get('/playlist', 'PlaylistController@ShowPlaylist')->name('showplaylist');
-Route::get('/user', 'HomeController@showUserPlaylists');
+Route::get('/playlist/{id}', 'PlaylistController@ShowPlaylist')->name('showplaylist');
+Route::get('/user/{id}', 'HomeController@showUserPlaylists');
 
 Route::get('/myplaylists', 'HomeController@myPlaylists')->name('showMyPlaylists');
 Route::get('/myfollows', 'HomeController@myFollows');
 Route::get('/artists', 'HomeController@showArtists');
-Route::get('/artist', 'HomeController@showArtist');
-Route::get('/album', 'HomeController@showAlbum');
+Route::get('/artist/{id}', 'HomeController@showArtist');
+Route::get('/album/{id}', 'HomeController@showAlbum');
 Route::get('/albums', 'HomeController@showAlbums');
 
-Route::get('/playlistliked', 'HomeController@playlistLiked');
-Route::get('/playlist_unliked', 'HomeController@playlistUnliked');
+Route::get('/playlistliked/{id}', 'HomeController@playlistLiked');
+Route::get('/playlist_unliked/{id}', 'HomeController@playlistUnliked');
 
-Route::post('/playlistcommented', 'PlaylistController@addComment');
-Route::post('/commentreplied', 'PlaylistController@addCommentReply');
-Route::get('/commentdeleted', 'PlaylistController@deleteComment');
+Route::post('/playlistcommented/{id}', 'PlaylistController@addComment');
+Route::post('/commentreplied/{id}', 'PlaylistController@addCommentReply');
+Route::get('/commentdeleted/{id}', 'PlaylistController@deleteComment');
 
 Route::post('/search', 'PlaylistController@search');
 
-Route::get('/playlistfollowed', 'HomeController@playlistFollowed');
-Route::get('/playlist_unfollowed', 'HomeController@playlistUnfollowed');
+Route::get('/playlistfollowed/{id}', 'HomeController@playlistFollowed');
+Route::get('/playlist_unfollowed/{id}', 'HomeController@playlistUnfollowed');
 
-Route::get('/addexistingsong', 'PlaylistController@addExistingSong');
+Route::get('/addexistingsong/playlist/{playlist_id}/song/{song_id}', 'PlaylistController@addExistingSong');

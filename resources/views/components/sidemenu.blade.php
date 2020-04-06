@@ -6,15 +6,15 @@
             <div class="ms_sidemenu_inner">
                 <div class="ms_logo_inner">
                     <div class="ms_logo">
-                        <a href="index-2.html"><img src="images/logo.png" alt="" class="img-fluid"/></a>
+                        <a href="{{ asset('index-2.html') }}"><img src="{{ asset('images/logo.png') }}" alt="" class="img-fluid"/></a>
                     </div>
                     <div class="ms_logo_open">
-                        <a href="index-2.html"><img src="images/open_logo.png" alt="" class="img-fluid"/></a>
+                        <a href="{{ asset('index-2.html') }}"><img src="{{ asset('images/open_logo.png') }}" alt="" class="img-fluid"/></a>
                     </div>
                 </div>
                 <div class="ms_nav_wrapper">
                     <ul>
-                        <li><a href="{{ asset('/') }}" class="active" title="Home">
+                        <li><a href="{{ url('/') }}" class="active" title="Home">
 						<span class="nav_icon">
 							<span class="icon icon_discover"></span>
 						</span>
@@ -23,7 +23,7 @@
 						</span>
 						</a>
 						</li>
-						<li><a href="{{ asset('myplaylists') }}" title="My Playlists">
+						<li><a href="{{ url('myplaylists') }}" title="My Playlists">
 						<span class="nav_icon">
 							<span class="icon icon_fe_playlist"></span>
 						</span>
@@ -32,7 +32,7 @@
 						</span>
 						</a>
                         </li>
-                        <li><a href="{{ asset('myfollows') }}" title="My follows">
+                        <li><a href="{{ url('myfollows') }}" title="My follows">
 						<span class="nav_icon">
 							<span class="icon icon_favourite"></span>
 						</span>
@@ -41,7 +41,7 @@
 						</span>
 						</a>
 						</li>
-                        <li><a href="{{ asset('addplaylist') }}" title="Create Playlist">
+                        <li><a href="{{ url('addplaylist') }}" title="Create Playlist">
 						<span class="nav_icon">
 							<span class="icon icon_c_playlist"></span>
 						</span>
@@ -50,7 +50,7 @@
 						</span>
 						</a>
                         </li>
-                        <li><a href="{{ asset('albums') }}" title="Albums">
+                        <li><a href="{{ url('albums') }}" title="Albums">
 						<span class="nav_icon">
 							<span class="icon icon_albums"></span>
 						</span>
@@ -59,7 +59,7 @@
 						</span>
 						</a>
                         </li>
-                        <li><a href="{{ asset('artists') }}" title="Artists">
+                        <li><a href="{{ url('artists') }}" title="Artists">
 						<span class="nav_icon">
 							<span class="icon icon_artists"></span>
 						</span>

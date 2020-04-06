@@ -33,18 +33,18 @@
                                             <div class="ms_song_overlay">
                                             </div>
                                             <div class="ms_play_icon">
-                                                <img src="images/svg/play.svg" alt="">
+                                                <img src="{{ asset('images/svg/play.svg') }}" alt="">
                                             </div>
                                         </div>
                                         <div class="w_tp_song_name">
-                                            <h3><a href="http://project.test/playlist?id={{ $playlist->id }}">{{ $playlist->title }}</a></h3>
+                                            <h3><a href='{{ url( "playlist/{$playlist->id}" ) }}'>{{ $playlist->title }}</a></h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="weekly_right">
                                     <span class="w_song_time">5:10</span>
                                     <span class="ms_more_icon" data-other="1">
-										<img src="images/svg/more.svg" alt="">									
+										<img src="{{ asset('images/svg/more.svg') }}" alt="">									
 									</span>
                                 </div>
                                 <ul class="more_option">

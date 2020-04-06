@@ -44,7 +44,7 @@
 
                                                 
                                             <div class="action">
-                                                <span class="que_more"><img src="images/svg/more.svg"></span>
+                                                <span class="que_more"><img src="{{ asset('images/svg/more.svg') }}"></span>
                                             </div> 
 
                                             </div>
@@ -59,7 +59,7 @@
                                                 </li>
                                                 @if( ($user->id == $playlist->user_id) || ($user->id == $comment->user_id) )
                                                 <li class="">
-                                                    <a href='{{ asset("commentdeleted?id=$comment->id") }}'>Delete</a>
+                                                    <a href='{{ url( "commentdeleted/{$comment->id}" ) }}'>Delete</a>
                                                 </li>
                                                 @endif
                                             </ul>
@@ -86,13 +86,13 @@
                                                 </a>
                                                 @if( ($user->id == $playlist->user_id) || ($user->id == $children->user_id) )
                                                 <div class="action">
-                                                    <span class="que_more"><img src="images/svg/more.svg"></span>
+                                                    <span class="que_more"><img src="{{ asset('images/svg/more.svg') }}"></span>
                                                 </div> 
 
                                                 <ul class="more_option">
                                                     
                                                     <li class="">
-                                                        <a href='{{ asset("commentdeleted?id=$children->id") }}'>Delete</a>
+                                                        <a href='{{ url("commentdeleted/{$children->id}") }}'>Delete</a>
                                                     </li>
                                                     
                                                 </ul>
@@ -107,7 +107,7 @@
                                         @endforeach
 									</ul>
 								</div>
-                            <form  method="Post" action="playlistcommented?id={{$playlist->id}}">
+                            <form  method="Post" action='{{ url( "playlistcommented/{$playlist->id}" ) }}'>
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" id="message" name="message" placeholder="Enter your comment" class="form-control">
@@ -115,7 +115,7 @@
                                 </div>
                                 <button id="comment" class="save_btn">Send</button>
                                 <button id="reply" class="save_btn " hidden="true" 
-                                formaction="commentreplied?id={{$playlist->id}}">Send reply</button>
+                                formaction='{{ url( "commentreplied/{$playlist->id}" ) }}'>Send reply</button>
                                 
                             </form>
                             <button onclick="document.getElementById('reply').hidden = true;

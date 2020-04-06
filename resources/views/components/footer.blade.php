@@ -1,6 +1,6 @@
 <div class="ms_footer_wrapper">
             <div class="ms_footer_logo">
-                <a href="index-2.html"><img src="images/open_logo.png" alt=""></a>
+                <a href="index-2.html"><img src="{{ asset('images/open_logo.png') }}" alt=""></a>
             </div>
             <div class="ms_footer_inner">
                 <div class="row">
@@ -14,9 +14,9 @@
                         <div class="footer_box footer_app">
                             <h1 class="footer_title">Download our App</h1>
                             <p>Go Mobile with our app.<br> Listen to your favourite songs at just one click. Download Now !</p>
-                            <a href="#" class="foo_app_btn"><img src="images/google_play.jpg" alt="" class="img-fluid"></a>
-                            <a href="#" class="foo_app_btn"><img src="images/app_store.jpg" alt="" class="img-fluid"></a>
-                            <a href="#" class="foo_app_btn"><img src="images/windows.jpg" alt="" class="img-fluid"></a>
+                            <a href="#" class="foo_app_btn"><img src="{{ asset('images/google_play.jpg') }}" alt="" class="img-fluid"></a>
+                            <a href="#" class="foo_app_btn"><img src="{{ asset('images/app_store.jpg') }}" alt="" class="img-fluid"></a>
+                            <a href="#" class="foo_app_btn"><img src="{{ asset('images/windows.jpg') }}" alt="" class="img-fluid"></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -42,7 +42,7 @@
                             <ul class="foo_con_info">
                                 <li>
                                     <div class="foo_con_icon">
-                                        <img src="images/svg/phone.svg" alt="">
+                                        <img src="{{ asset('images/svg/phone.svg') }}" alt="">
                                     </div>
                                     <div class="foo_con_data">
                                         <span class="con-title">Call us :</span>
@@ -51,7 +51,7 @@
                                 </li>
                                 <li>
                                     <div class="foo_con_icon">
-                                        <img src="images/svg/message.svg" alt="">
+                                        <img src="{{ asset('images/svg/message.svg') }}" alt="">
                                     </div>
                                     <div class="foo_con_data">
                                         <span class="con-title">email us :</span>
@@ -60,7 +60,7 @@
                                 </li>
                                 <li>
                                     <div class="foo_con_icon">
-                                        <img src="images/svg/add.svg" alt="">
+                                        <img src="{{ asset('images/svg/add.svg') }}" alt="">
                                     </div>
                                     <div class="foo_con_data">
                                         <span class="con-title">walk in :</span>

@@ -20,7 +20,7 @@
                 </div>
                 <div class="album_single_text">
                     <h2>{{ $playlist->title }}</h2>
-                    <p class="singer_name">By - <a href="http://project.test/user?id={{ $user->id }}">{{ $user->nickname }}</a></p>
+                    <p class="singer_name">By - <a href='{{ url( "user/{$user->id}" ) }}'>{{ $user->nickname }}</a></p>
                     <p class="singer_name">Description: {{ $playlist->description }}</p>
                     <div class="album_feature">
                         <p>Count of songs: {{ $playlist->songs_count }} | Created: {{ $playlist->created_at }} | Last update: {{ $playlist->updated_at }}</p>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="album_more_optn ms_more_icon">
-                    <span><img src="images/svg/more.svg" alt=""></span>
+                    <span><img src="{{ asset('images/svg/more.svg') }}" alt=""></span>
                 </div>
                 <ul class="more_option">
                     <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
@@ -71,13 +71,19 @@
                             <li class="text-center">
                             <div class="weekly_right">
                                     <span class="ms_more_icon" data-other="1">
-                                        <img src="images/svg/more.svg" alt="">
+                                        <img src="{{ asset('images/svg/more.svg') }}" alt="">
                                     </span>
                             </div>
                                 <ul class="more_option">
+                                    @if( (count($user->playlists) == 1))
+                                    <li>
+                                        <span class="opt_icon"><span class="icon icon_playlst"></span></span>You don't have more playlists
+                                    </a></li>
+                                    @endif
+                                    
                                     @foreach( $user->playlists as $userPlaylist)
                                     @if( $userPlaylist->id != $playlist->id)
-                                    <li><a href="http://project.test/addexistingsong?playlist_id={{ $userPlaylist->id }}&song_id={{ $song->id }}">
+                                    <li><a href='{{ url( "addexistingsong/playlist/{$userPlaylist->id}/song/{$song->id}" ) }}'>
                                         <span class="opt_icon"><span class="icon icon_playlst"></span></span>{{ $userPlaylist->title }}
                                     </a></li>
                                     @endif
@@ -85,7 +91,7 @@
                                 </ul>
                             </li>
                             <li class="text-center"><a href="#"><span class="ms_close">
-                                    <img src="images/svg/close.svg" alt=""></span></a>
+                                    <img src="{{ asset('images/svg/close.svg') }}" alt=""></span></a>
                             </li>
                         </ul>
                         @endforeach

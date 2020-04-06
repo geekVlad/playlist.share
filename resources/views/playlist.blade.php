@@ -20,7 +20,7 @@
                 </div>
                 <div class="album_single_text">
                     <h2>{{ $playlist->title }}</h2>
-                    <p class="singer_name">By - <a href="http://project.test/user?id={{ $playlist->user->id }}">{{ $playlist->user->nickname }}</a></p>
+                    <p class="singer_name">By - <a href='{{ url( "user/{$playlist->user->id}" ) }}'>{{ $playlist->user->nickname }}</a></p>
                     <p class="singer_name">Description: {{ $playlist->description }}</p>
                     <div class="album_feature">
                         <p>Count of songs: {{ $playlist->songs_count }} | Created: {{ $playlist->created_at }} | Last update: {{ $playlist->updated_at }}</p>
@@ -28,20 +28,20 @@
                     </div>
                     <div class="album_btn">
                         @if ( $like==null )
-                                    <a href="playlistliked?id={{$playlist->id}}" class="ms_btn">Like</a>
+                                    <a href='{{ url( "playlistliked/{$playlist->id}" ) }}' class="ms_btn">Like</a>
                                     @else
-                                    <a href="playlist_unliked?id={{$playlist->id}}" class="ms_btn">Unlike</a>
+                                    <a href='{{ url( "playlist_unliked/{$playlist->id}" ) }}' class="ms_btn">Unlike</a>
                                     @endif
 
                                     @if ( $follow==null )
-                                    <a href="playlistfollowed?id={{$playlist->id}}" class="ms_btn">Follow</a>
+                                    <a href='{{ url( "playlistfollowed/{$playlist->id}" ) }}' class="ms_btn">Follow</a>
                                     @else
-                                    <a href="playlist_unfollowed?id={{$playlist->id}}" class="ms_btn">Unfollow</a>
+                                    <a href='{{ url( "playlist_unfollowed/{$playlist->id}" ) }}' class="ms_btn">Unfollow</a>
                                     @endif
                     </div>
                 </div>
                 <div class="album_more_optn ms_more_icon">
-                    <span><img src="images/svg/more.svg" alt=""></span>
+                    <span><img src="{{ asset('images/svg/more.svg') }}" alt=""></span>
                 </div>
                 <ul class="more_option">
                     <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
@@ -87,12 +87,18 @@
                             <li class="text-center">
                             <div class="weekly_right">
                                     <span class="ms_more_icon" data-other="1">
-                                        <img src="images/svg/more.svg" alt="">
+                                        <img src="{{ asset('images/svg/more.svg') }}" alt="">
                                     </span>
                             </div>
                                 <ul class="more_option">
+                                    @if( (count($user->playlists) == 0))
+                                    <li>
+                                        <span class="opt_icon"><span class="icon icon_playlst"></span></span>You don't have playlists
+                                    </a></li>
+                                    @endif
+                                    
                                     @foreach( $user->playlists as $userPlaylist)
-                                    <li><a href="http://project.test/addexistingsong?playlist_id={{ $userPlaylist->id }}&song_id={{ $song->id }}">
+                                    <li><a href='{{ url( "addexistingsong/playlist/{$userPlaylist->id}/song/{$song->id}" ) }}'>
                                         <span class="opt_icon"><span class="icon icon_playlst"></span></span>{{ $userPlaylist->title }}
                                     </a></li>
                                     @endforeach

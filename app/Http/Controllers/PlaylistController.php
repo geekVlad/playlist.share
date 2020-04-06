@@ -56,7 +56,7 @@ class PlaylistController extends Controller
 
         $playlist->save();
 
-        return redirect('playlist?id=' . $playlist->id );
+        return redirect('playlist/' . $playlist->id );
 
     }
 

@@ -53,14 +53,14 @@
                                             </div>
                                         </div>
                                         <div class="w_tp_song_name">
-                                            <h3><a href="http://project.test/playlist?id={{ $playlist->id }}">{{ $playlist->title }}</a></h3>
-                                            <h3>By {{ $playlist->user->nickname }}</h3>
+                                            <h3><a href='{{ url( "playlist/{$playlist->id}" ) }}'>{{ $playlist->title }}</a></h3>
+                                            <h3>By <a href='{{ url( "user/{$playlist->user->id}" ) }}'>{{ $playlist->user->nickname }}</a></h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="weekly_right">
                                     <span class="ms_more_icon" data-other="1">
-										<img src="images/svg/more.svg" alt="">									
+										<img src="{{ asset('images/svg/more.svg') }}" alt="">									
 									</span>
                                 </div>
                                 <ul class="more_option">
@@ -94,18 +94,18 @@
                                             <div class="ms_song_overlay">
                                             </div>
                                             <div class="ms_play_icon">
-                                                <img src="images/svg/play.svg" alt="">
+                                                <img src="{{ asset('images/svg/play.svg') }}" alt="">
                                             </div>
                                         </div>
                                         <div class="w_tp_song_name">
-                                            <h3><a href="http://project.test/album?id={{ $album->id }}">{{ $album->title }}</a></h3>
+                                            <h3><a href='{{ url( "album/{$album->id}" ) }}'>{{ $album->title }}</a></h3>
                                             <h3>{{ $album->artist->name }}</h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="weekly_right">
                                     <span class="ms_more_icon" data-other="1">
-                                        <img src="images/svg/more.svg" alt="">                                  
+                                        <img src="{{ asset('images/svg/more.svg') }}" alt="">                                  
                                     </span>
                                 </div>
                                 <ul class="more_option">
@@ -139,24 +139,30 @@
                                             <div class="ms_song_overlay">
                                             </div>
                                             <div class="ms_play_icon">
-                                                <img src="images/svg/play.svg" alt="">
+                                                <img src="{{ asset('images/svg/play.svg') }}" alt="">
                                             </div>
                                         </div>
                                         <div class="w_tp_song_name">
                                             <h3>{{ $song->title }}</h3>
-                                            <h3><a href="http://project.test/artist?id={{ $song->artist->id }}">{{ $song->artist->name }}</a></h3>
+                                            <h3><a href='{{ url( "artist/{$song->artist->id}" ) }}'>{{ $song->artist->name }}</a></h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="weekly_right">
                                     <span class="w_song_time">Add To Playlist</span>
                                     <span class="ms_more_icon" data-other="1">
-                                        <img src="images/svg/more.svg" alt="">                                  
+                                        <img src="{{ asset('images/svg/more.svg') }}" alt="">                                  
                                     </span>
                                 </div>
                                 <ul class="more_option">
+                                    @if( (count($user->playlists) == 0))
+                                    <li>
+                                        <span class="opt_icon"><span class="icon icon_playlst"></span></span>You don't have playlists
+                                    </a></li>
+                                    @endif
+                                    
                                     @foreach( $user->playlists as $userPlaylist)
-                                    <li><a href="http://project.test/addexistingsong?playlist_id={{ $userPlaylist->id }}&song_id={{ $song->id }}">
+                                    <li><a href='{{ url( "addexistingsong/playlist/{$userPlaylist->id}/song/{$song->id}" ) }}'>
                                         <span class="opt_icon"><span class="icon icon_playlst"></span></span>{{ $userPlaylist->title }}
                                     </a></li>
                                     @endforeach
@@ -185,17 +191,17 @@
                                             <div class="ms_song_overlay">
                                             </div>
                                             <div class="ms_play_icon">
-                                                <img src="images/svg/play.svg" alt="">
+                                                <img src="{{ asset('images/svg/play.svg') }}" alt="">
                                             </div>
                                         </div>
                                         <div class="w_tp_song_name">
-                                            <h3><a href="http://project.test/artist?id={{ $artist->id }}">{{ $artist->name }}</a></h3>
+                                            <h3><a href='{{ url( "artist/{$artist->id}" ) }}'>{{ $artist->name }}</a></h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="weekly_right">
                                     <span class="ms_more_icon" data-other="1">
-                                        <img src="images/svg/more.svg" alt="">                                  
+                                        <img src="{{ asset('images/svg/more.svg') }}" alt="">                                  
                                     </span>
                                 </div>
                                 <ul class="more_option">
