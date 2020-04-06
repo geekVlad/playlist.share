@@ -11,7 +11,7 @@
                             <a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i> continue with google </a>
                             <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i> continue with facebook</a>
                         </div>
-                         <form method="POST" action="/login">
+                         <form method="POST" action="{{ url('login') }}">
                             @csrf
                             <div class="ms_save_email">
                                 <h3>or use your email</h3>
@@ -36,7 +36,7 @@
                         </form>
                         <div class="ms_dnt_have">
                             <span>Dont't have an account ?</span>
-                            <a href="/register">Register Now</a>
+                            <a href="{{ url('register') }}">Register Now</a>
                         </div>
                     </div>
                 </div>

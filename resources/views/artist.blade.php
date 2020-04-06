@@ -24,12 +24,12 @@
                 <div class="album_single_text">
                     <h2>{{ $artist->name }}</h2>
                     <div class="album_btn">
-                        <a href="#" class="ms_btn play_btn"><span class="play_all"><img src="images/svg/play_all.svg" alt="">Play All</span><span class="pause_all"><img src="images/svg/pause_all.svg" alt="">Pause</span></a>
-                        <a href="#" class="ms_btn"><span class="play_all"><img src="images/svg/add_q.svg" alt="">Add To Queue</span></a>
+                        <a href="#" class="ms_btn play_btn"><span class="play_all"><img src="{{ asset('images/svg/play_all.svg') }}" alt="">Play All</span><span class="pause_all"><img src="{{ asset('images/svg/pause_all.svg') }}" alt="">Pause</span></a>
+                        <a href="#" class="ms_btn"><span class="play_all"><img src="{{ asset('images/svg/add_q.svg') }}" alt="">Add To Queue</span></a>
                     </div>
                 </div>
                 <div class="album_more_optn ms_more_icon">
-                    <span><img src="images/svg/more.svg" alt=""></span>
+                    <span><img src="{{ asset('images/svg/more.svg') }}" alt=""></span>
                 </div>
                 <ul class="more_option">
                     <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
@@ -58,7 +58,7 @@
                                     <div class="ms_main_overlay">
                                         <div class="ms_box_overlay"></div>
                                         <div class="ms_more_icon">
-                                            <img src="images/svg/more.svg" alt="">
+                                            <img src="{{ asset('images/svg/more.svg') }}" alt="">
                                         </div>
                                         <ul class="more_option">
                                             <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
@@ -68,12 +68,12 @@
                                             <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
                                         </ul>
                                         <div class="ms_play_icon">
-                                            <img src="images/svg/play.svg" alt="">
+                                            <img src="{{ asset('images/svg/play.svg') }}" alt="">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="ms_rcnt_box_text">
-                                    <h3><a href="http://project.test/album?id={{ $album->id }}">{{ $album->title }}</a></h3>
+                                    <h3><a href='{{ url( "album/{$album->id}" ) }}'>{{ $album->title }}</a></h3>
                                     <h3>{{ $album->released_date }}</h3>
                                 </div>
                             </div>
@@ -116,12 +116,18 @@
                         <li class="text-center">
                             <div class="weekly_right">
                                     <span class="ms_more_icon" data-other="1">
-                                        <img src="images/svg/more.svg" alt="">
+                                        <img src="{{ asset('images/svg/more.svg') }}" alt="">
                                     </span>
                                 </div>
                                 <ul class="more_option">
+                                    @if( (count($user->playlists) == 0))
+                                    <li>
+                                        <span class="opt_icon"><span class="icon icon_playlst"></span></span>You don't have playlists
+                                    </a></li>
+                                    @endif
+                                    
                                     @foreach( $user->playlists as $userPlaylist)
-                                    <li><a href="http://project.test/addexistingsong?playlist_id={{ $userPlaylist->id }}&song_id={{ $single->id }}">
+                                    <li><a href='{{ url( "addexistingsong/playlist/{$userPlaylist->id}/song/{$single->id}" ) }}'>
                                         <span class="opt_icon"><span class="icon icon_playlst"></span></span>{{ $userPlaylist->title }}
                                     </a></li>
                                     @endforeach

@@ -20,16 +20,16 @@
     <meta name="author" content="kamleshyadav">
     <meta name="MobileOptimized" content="320">
     <!--Start Style -->
-    <link rel="stylesheet" type="text/css" href="css/fonts.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="js/plugins/swiper/css/swiper.min.css">
-    <link rel="stylesheet" type="text/css" href="js/plugins/nice_select/nice-select.css">
-    <link rel="stylesheet" type="text/css" href="js/plugins/player/volume.css">
-	<link rel="stylesheet" type="text/css" href="js/plugins/scroll/jquery.mCustomScrollbar.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/swiper/css/swiper.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/nice_select/nice-select.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/player/volume.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/scroll/jquery.mCustomScrollbar.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <!-- Favicon Link -->
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}">
 
     <script>
         window.csrfToken = '{{ csrf_token() }}';
@@ -50,16 +50,16 @@
     @yield('content')
 
      <!--Main js file Style-->
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/plugins/swiper/js/swiper.min.js"></script>
-    <script type="text/javascript" src="js/plugins/player/jplayer.playlist.min.js"></script>
-    <script type="text/javascript" src="js/plugins/player/jquery.jplayer.min.js"></script>
-    <script type="text/javascript" src="js/plugins/player/audio-player.js"></script>
-    <script type="text/javascript" src="js/plugins/player/volume.js"></script>
-    <script type="text/javascript" src="js/plugins/nice_select/jquery.nice-select.min.js"></script>
-    <script type="text/javascript" src="js/plugins/scroll/jquery.mCustomScrollbar.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/swiper/js/swiper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/player/jplayer.playlist.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/player/jquery.jplayer.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/player/audio-player.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/player/volume.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/nice_select/jquery.nice-select.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/scroll/jquery.mCustomScrollbar.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
 </body>
 
 </html>

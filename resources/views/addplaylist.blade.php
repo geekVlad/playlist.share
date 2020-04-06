@@ -15,7 +15,7 @@
            @include('components.header')
            <div class="ms_profile_wrapper">
                 <h1>Новий плейлист</h1>
-                <form method="POST" action="/addplaylist" enctype="multipart/form-data">
+                <form method="POST" action="{{ url('addplaylist') }}" enctype="multipart/form-data">
 	                <div class="ms_profile_box">
 	                	<label for="myInputFile">
 	  						<div class="ms_pro_img">

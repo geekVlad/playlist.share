@@ -2,12 +2,12 @@
             <div class="ms_header">
                 <div class="ms_top_left">
                     <div class="ms_top_search">
-                        <form id="search-form" action="/search" method="POST">
+                        <form id="search-form" action="{{ url('search') }}" method="POST">
                             @csrf
                             <input type="text" name="search" class="form-control" placeholder="Search" value="{{ old('search') }}">
                             <a href="javascript:;" onclick="document.getElementById('search-form').submit()">
                                 <span class="search_icon">
-                                    <img src="images/svg/search.svg" alt="">
+                                    <img src="{{ asset('images/svg/search.svg') }}" alt="">
                                 </span>
                             </a>
 

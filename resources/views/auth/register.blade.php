@@ -7,9 +7,9 @@
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="ms_register_img">
-                            <img src="images/register_img.png" alt="" class="img-fluid" />
+                            <img src="{{ asset('images/register_img.png') }}" alt="" class="img-fluid" />
                         </div>
-                        <form method="POST" action="/register">
+                        <form method="POST" action="{{ url('register') }}">
                         @csrf
                             <div class="ms_register_form">
                                 <h2>Register / Sign Up</h2>
@@ -82,7 +82,7 @@
                             </span>
                                 </div>
                                 <button class="save_btn">register now</button>
-                                <p>Already Have An Account? <a href="/login">login here</a></p>
+                                <p>Already Have An Account? <a href="{{ url('login') }}">login here</a></p>
                             </div>
                         </form>
                     </div>
