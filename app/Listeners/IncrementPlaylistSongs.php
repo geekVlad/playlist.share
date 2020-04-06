@@ -4,8 +4,8 @@ namespace App\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Events\SongRowCreated;
-use Illuminate\Support\Facades\DB;
+use App\Events\SongsRowCreated;
+use App\Models\Playlist;
 
 class IncrementPlaylistSongs
 {
@@ -25,10 +25,9 @@ class IncrementPlaylistSongs
      * @param  object  $event
      * @return void
      */
-    public function handle(SongRowCreated $event)
+    public function handle(SongsRowCreated $event)
     {
-        DB::table('playlists')
-        ->where('id', '=', $event->playlist_id)
+        Playlist::where('id', $event->playlist_id)
         ->increment('songs_count');
     }
 }

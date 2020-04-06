@@ -23,7 +23,7 @@ class SongsRowDeleted
     public function __construct(playlist_song $song)
     {
         $this->playlist_id = $song->playlist_id;
-        $this->user_id = $song->user_id;
+        $this->song_id = $song->id;
     }
 
     /**

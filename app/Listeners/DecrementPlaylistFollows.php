@@ -6,6 +6,7 @@ use App\Events\FollowRowDeleted;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\DB;
+use App\Models\Playlist;
 
 class DecrementPlaylistFollows
 {
@@ -27,8 +28,7 @@ class DecrementPlaylistFollows
      */
     public function handle(FollowRowDeleted $event)
     {
-        DB::table('playlists')
-        ->where('id', '=', $event->playlist_id)
+        Playlist::where('id', '=', $event->playlist_id)
         ->decrement('follows_count');
 
         $playlistId = $event->playlist_id;

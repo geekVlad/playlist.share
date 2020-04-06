@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use App\Events\SongRowCreated;
-use App\Events\SongRowDeleted;
+use App\Events\SongsRowCreated;
+use App\Events\SongsRowDeleted;
 
 class playlist_song extends Pivot
 {

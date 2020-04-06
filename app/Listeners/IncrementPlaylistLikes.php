@@ -5,7 +5,7 @@ namespace App\Listeners;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Events\LikesRowCreated;
-use Illuminate\Support\Facades\DB;
+use App\Models\Playlist;
 
 class IncrementPlaylistLikes
 {
@@ -27,8 +27,7 @@ class IncrementPlaylistLikes
      */
     public function handle(LikesRowCreated $event)
     {
-        DB::table('playlists')
-        ->where('id', '=', $event->playlist_id)
+        Playlist::where('id', '=', $event->playlist_id)
         ->increment('likes_count');
     }
 }

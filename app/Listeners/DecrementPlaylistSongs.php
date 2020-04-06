@@ -4,9 +4,9 @@ namespace App\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use App\Events\SongsRowDeleted;
 use Illuminate\Support\Facades\DB;
-use App\Models\playlist_song;
-use App\Events\SongRowDeleted;
+use App\Models\Playlist;
 
 class DecrementPlaylistSongs
 {
@@ -26,17 +26,16 @@ class DecrementPlaylistSongs
      * @param  object  $event
      * @return void
      */
-    public function handle(SongRowDeleted $event)
+    public function handle(SongsRowDeleted $event)
     {
-        DB::table('playlists')
-        ->where('id', '=', $event->playlist_id)
+        $playlistId = $event->playlist_id;
+        $songId = $event->song_id;
+
+        Playlist::where('id', '=', $playlistId)
         ->decrement('songs_count');
 
-        $playlistId = $event->playlist_id;
-        $userId = $event->user_id;
-
         DB::table('playlists_songs')
-        ->where('user_id', $userId)
+        ->where('song_id', $songId)
         ->where('playlist_id', $playlistId)
         ->delete();
     }
