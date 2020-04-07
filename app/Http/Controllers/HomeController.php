@@ -97,6 +97,16 @@ class HomeController extends Controller
         return view('user', ['userPlaylists' => $userPlaylists, 'user' => $user, ]);
     }
 
+    public function showNewPlaylists(Request $request)
+    {
+        $newPlaylists = Playlist::with('user')
+            ->whereDate('created_at', '>', Carbon::now()->subHours(23))
+            ->orderBy('likes_count', 'desc')
+            ->paginate(15);
+
+        return view('newPlaylists', compact('newPlaylists'));
+    }
+
     public function myPlaylists()
     {
         $myPlaylists = User::getMyPlaylists();
