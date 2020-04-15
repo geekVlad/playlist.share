@@ -5,7 +5,7 @@
     <!----Loader Start---->
 	@include('components.loader')
 
-    <!----Main Wrapper Start---->s
+    <!----Main Wrapper Start---->
     <div class="ms_main_wrapper">
         <!---Side Menu Start--->
         @include('components.sidemenu')
@@ -56,15 +56,23 @@
                         </ul>
                         @foreach( $playlist->songs as $song)
                         <ul>
-                            <li><a href="#"><span class="play_no">
+                            <li><a href=""><span class="play_no">
                                 @if( $loop->iteration < 10 )
                                         0{{ $loop->iteration }}
                                         @else
                                         {{ $loop->iteration }}
                                         @endif
-                            </span><span class="play_hover"></span></a>
+                                </span>
+                                <span class="play_hover">
+                                    
+                                </span></a>
                             </li>
-                            <li class="text-center"><a href="#">{{ $song->title }}</a></li>
+                            <li class="text-center">
+                                <a href="#"  onclick='
+                                document.getElementById("player").src = "{{ $song->url }}";
+                                '>{{ $song->title }}</a>
+
+                            </li>
                             <li class="text-center"><a href="#">{{ $song->album->title }}</a></li>
                             <li class="text-center"><a href="#">{{ $song->artist->name }}</a></li>
                             <li class="text-center"><a href="#">{{ $song->duration }}</a></li>
@@ -99,6 +107,8 @@
                 </div>
             </div>
             @include('components.comments')
+
+            @include('components.player')
         </div>
     </div>
 @endsection

@@ -20,6 +20,7 @@
     <meta name="author" content="kamleshyadav">
     <meta name="MobileOptimized" content="320">
     <!--Start Style -->
+
     <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
@@ -50,6 +51,7 @@
     @yield('content')
 
      <!--Main js file Style-->
+
     <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/plugins/swiper/js/swiper.min.js') }}"></script>
