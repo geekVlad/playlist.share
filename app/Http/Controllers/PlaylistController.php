@@ -10,6 +10,7 @@ use App\Models\Likes;
 use App\Models\Artist;
 use App\Models\Album;
 use App\Models\Comment;
+use App\Models\playlist_song;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -125,16 +126,29 @@ class PlaylistController extends Controller
         $comments = Comment::with('user')->where('playlist_id', $playlist->id)->orderBy('updated_at')->get();
 
         if(!$playlist){
-            return "Такого плейлиста немає";
+            return "404";
         }
+
+        $songs = playlist_song::with('song.artist','song.album')->where('playlist_id', $request->id)->paginate(10);
 
         if(Auth::user()->id == $playlist->user_id){
 
-            return view('myplaylist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments]);
+            return view('myplaylist', [
+                'playlist' => $playlist, 
+                'like' => $like, 
+                'comments' => $comments,
+                'songs' => $songs,
+            ]);
         }
 
-        return view('playlist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments
-                    ]);
+        
+
+        return view('playlist', [
+            'playlist' => $playlist, 
+            'like' => $like, 
+            'comments' => $comments,
+            'songs' => $songs,
+            ]);
     }
 
     public function addComment(Request $request)
@@ -152,16 +166,24 @@ class PlaylistController extends Controller
 
     public function AddSong(Request $request)
     {
+
         $valid = Validator::make($request->all(), [
           'title' => 'required|max:255',
             'artist' => 'required|max:255',
             'songimage' => 'file|mimes:jpg,jpeg,png',
-            'album' => 'required|max:255',
+            'artistimage' => 'file|mimes:jpg,jpeg,png',
+            'albumimage' => 'file|mimes:jpg,jpeg,png',
+            'album' => 'max:255',
             'day' => 'required|integer',
-            'mounth' => 'required|integer',
+            'month' => 'required|integer',
             'year' => 'required|integer',
+            'dayalbum' => 'required|integer',
+            'monthalbum' => 'required|integer',
+            'yearalbum' => 'required|integer',
+            'playlistid' => 'required|integer',
             'url' => 'url',
         ]);
+
 
         if ($valid->fails()) {
           return redirect()
@@ -170,9 +192,132 @@ class PlaylistController extends Controller
                     ->withInput();
             }
 
+    //перевіряємо на валідність посилання, і дістаємо id відео
+        $url = $request->url;
+        if (stripos($url, 'youtube.com') !== false) {
+            preg_match('#v=([^\&]+)#is', $url, $videoId);
+            if (count ($videoId) <= 0) {
+                return redirect()
+                    ->back()
+                    ->withErrors(['url' => 'Посилання не відповідє вимогам'])
+                    ->withInput();
+            }
+        }else{
+            return redirect()
+                    ->back()
+                    ->withErrors(['url' => 'Посилання не відповідє вимогам'])
+                    ->withInput();
+        }
+    //Отримуємо довжину відео
+    $api_key = "AIzaSyA62DlQS_T2Kefb-zXDElEYxNAs8HRakA4";
+    $get_data = file_get_contents("https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=".$videoId[1]."&key=".$api_key);
+    $get_data = json_decode($get_data, true);
+    $result_time = $get_data["items"]["0"]["contentDetails"]["duration"];
+
+    $result_time = new \DateInterval($result_time);
+    $total_sec = $result_time->days * 86400 + $result_time->h * 3600 + $result_time->i * 60 + $result_time->s;
+    $total_time = new \DateTime("@".$total_sec);
+
+    $duration = $total_time->format("H:i:s");
+
+    //Додаємо виконавця
+        if($request->artist_id){
+            $artist_id = $request->artist_id;
+        }else{
+            if($request->artistimage){
+                $destinationPath = public_path('images/artist/');
+                $fileName = substr(md5(uniqid()), 0, 20) . "." . $request->artistimage->extension(); 
+                $request->artistimage->move($destinationPath, $fileName);
+            }else{
+                $fileName = 'defaultArtistImage.jpg';
+            }
+
+            $artist = new Artist;
+            $artist->name = $request->artist;
+            $artist->img = $fileName;
+            $artist->save();
+            $artist_id = $artist->id;
+        }
+    
+    //Додаємо альбом
+        if($request->album_id){
+            $album_id = $request->album_id;
+        }else{
+            if($request->album){
+                if($request->albumimage){
+                    $destinationPath = public_path('images/album/');
+                    $fileName = substr(md5(uniqid()), 0, 20) . "." . $request->albumimage->extension(); 
+                    $request->albumimage->move($destinationPath, $fileName);
+                }else{
+                    $fileName = 'defaultAlbumImage.jpg';
+                }
+
+                $album = new Album;
+                $album->title = $request->album;
+                $album->artist_id = $artist_id;
+                $album->img = $fileName;
+                $album->released_date = $request->dayalbum.".".$request->monthalbum.".".$request->yearalbum;
+                $album->save();
+                $album_id = $album->id;
+            }else{
+                $album_id = false;
+            }
+            
+        }
+
+    //Додаємо пісню
+        
+        if($request->songimage){
+            $destinationPath = public_path('images/music/');
+            $fileName = substr(md5(uniqid()), 0, 20) . "." . $request->songimage->extension(); 
+            $request->songimage->move($destinationPath, $fileName);
+        }else{
+            $fileName = 'defaultSongImage.png';
+        }
+
+        $song = new Song;
+        $song->title = $request->title;
+        $song->artist_id = $artist_id;
+        $song->duration = $duration;
+        if($album_id){$song->album_id = $album_id;}else{$song->album_id = "1";}
+        $song->released_date = $request->day.".".$request->month.".".$request->year;
+        $song->img = $fileName;
+        $song->url = $videoId[1];   
+        $song->save();
+        $song_id = $song->id;
+        
+    //Привязуємо пісню до плейлиста
+
+        $playlist_song = new playlist_song;
+        $playlist_song->song_id = $song_id;
+        $playlist_song->playlist_id = $request->playlistid;
+        $playlist_song->save();
+
+        return redirect()->back();
+
+    }
+
+    public function DeleteSong(Request $request){
+
+        $playlist_song = playlist_song::with('playlist')->where(['song_id' => $request->song_id, 'playlist_id' => $request->playlist_id])->get()->first();
+
+        if($playlist_song){
+            if(Auth::id() == $playlist_song->playlist->user_id){
+                $playlist_song = playlist_song::where(['song_id' => $request->song_id, 'playlist_id' => $request->playlist_id])->delete();
+
+            }else {
+                return "404";
+            }
+        }else{
+            return "404";
+        }
+        
+
+        return redirect()->back();
+
+        
 
 
-        return $request;
     }
 
     public function getArtistAjax(Request $request){
@@ -213,8 +358,7 @@ class PlaylistController extends Controller
             $artist_name = preg_replace("/\s{2,}/"," ",$artist_name);
 
             if(stristr($artist_name, $search)){
-                echo "\n<li>".$artist->name."</li>";
-                echo "\n<input type=\"hidden\" name=\"id_artist\" value=\"".$artist->id."\">";
+                echo "\n<li id=\"".$artist->id."\" onClick=\"artist_click(this.id)\">".$artist->name."</li>";
             }
         }
     }
@@ -257,8 +401,7 @@ class PlaylistController extends Controller
             $album_title = preg_replace("/\s{2,}/"," ",$album_title);
 
             if(stristr($album_title, $search)){
-                echo "\n<li>".$album->title."</li>";
-                echo "\n<input type=\"hidden\" name=\"id_album\" value=\"".$album->id."\">";
+                echo "\n<li id=\"".$album->id."\" onClick=\"album_click(this.id)\">".$album->title."</li>";
             }
         }
         

@@ -42,33 +42,52 @@
                     <h1>Songs</h1>
                 </div>
                 <div class="album_inner_list">
-                    <div class="album_list_wrapper">
-                        <ul class="album_list_name">
-                            <li>#</li>
-                            <li>Song Title</li>
-                            <li>Album</li>
-                            <li class="text-center">Duration</li>
-                            <li class="text-center">Add To Favourites</li>
-                            <li class="text-center">More</li>
-                        </ul>
-                        @foreach( $playlist->songs as $song)
-                        <ul>
-                            <li><a href="#"><span class="play_no">01</span><span class="play_hover"></span></a></li>
-                            <li><a href="#">{{ $song->title }}</a></li>
-                            <li><a href="#">{{ $song->artist_id }}</a></li>
-                            <li class="text-center"><a href="#">5:26</a></li>
-                            <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
-                            <li class="text-center ms_more_icon"><a href="javascript:;"><span class="ms_icon1 ms_active_icon"></span></a>
-                                <ul class="more_option">
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                    <div class="album_list_wrapper"> 
+                        @foreach( $songs as $song)
+                        <div class="ms_weekly_box">
+                            <div class="weekly_left">
+                                <span class="w_top_no">
+                                </span>
+                                <div class="w_top_song">
+                                    <div class="w_tp_song_img">
+                                        <img src="images/music/{{$song->song->img}}" alt="">
+                                        <div class="ms_song_overlay">
+                                        </div>
+                                        <div class="ms_play_icon">
+                                            <img src="images/svg/play.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="w_tp_song_name">
+                                        <h3><a href="#">{{$song->song->title}}</a></h3>      
+                                        <p>{{$song->song->artist->name}}</p>
+                                    </div>
+                                </div>
+                                <div class="w_top_song">
+                                    <div class="w_tp_song_name">   
+                                        <p>@if($song->song->album->id != 1){{$song->song->album->title}}@endif</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="weekly_right">
+                                <span class="w_song_time">{{$song->song->duration}}</span>
+                                <span class="ms_more_icon" data-other="1">
+                                    <img src="images/svg/more.svg" alt="">                                  
+                                </span>
+                            </div>
+                            <ul class="more_option">
+                                <li><a href="#"><span class="opt_icon"><span class="icon icon_fav"></span></span>Add To Favourites</a></li>
+                                <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>Add To Queue</a></li>
+                                <li><a href="#"><span class="opt_icon"><span class="icon icon_dwn"></span></span>Download Now</a></li>
+                                <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>Add To Playlist</a></li>
+                                <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>Share</a></li>
+                            </ul>
+                        </div>
                         @endforeach
+                        <div class="ms_weekly_box">
+                            <div class="weekly_left">
+                                {{$songs->appends(['id' => $playlist->id])->links()}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

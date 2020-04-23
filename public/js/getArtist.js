@@ -39,12 +39,17 @@ $("#artist_search").hover(function(){
 
 $(function(){
     $("#artist_search").on("click", "li", function(){
-        s_user = $(this).text();
-        document.getElementById('artist').value = s_user;
+        li_text = $(this).text();   
+        document.getElementById('artist').value = li_text;
         document.getElementById('artist_search').style.display = 'none';
 })
 
 })
+
+function artist_click(clicked_id)
+  {
+      document.getElementById('artist_id').value = clicked_id;
+  }
 
 
 

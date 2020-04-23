@@ -46,3 +46,8 @@ $(function(){
 })
 
 })
+
+function album_click(clicked_id)
+  {
+      document.getElementById('album_id').value = clicked_id;
+  }
