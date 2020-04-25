@@ -44,7 +44,7 @@
                     <h1>Songs</h1>
                 </div>
                 <div class="album_inner_list">
-                    <div class="album_list_wrapper">
+                    <div class="album_list_wrapper" id="playlist">
                         <ul class="album_list_name">
                             <li>#</li>
                             <li class="text-center">Song Title</li>
@@ -68,12 +68,10 @@
                                 </span></a>
                             </li>
                             <li class="text-center">
-                                <a href="#"  onclick='
-                                document.getElementById("player").src = "{{ $song->url }}";
-                                '>{{ $song->title }}</a>
+                                <a href="#"  v-on:click='changeIdsQueue("{{ $song->url }}")'>{{ $song->title }}</a>
 
                             </li>
-                            <li class="text-center"><a href="#">{{ $song->album->title }}</a></li>
+                            <li class="text-center"><a href="#" >{{ $song->album->title }}</a></li>
                             <li class="text-center"><a href="#">{{ $song->artist->name }}</a></li>
                             <li class="text-center"><a href="#">{{ $song->duration }}</a></li>
                             <li class="text-center">

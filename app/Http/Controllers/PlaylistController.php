@@ -14,6 +14,7 @@ use App\Models\Artist;
 use App\Models\playlist_song;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 
 class PlaylistController extends Controller
@@ -73,16 +74,17 @@ class PlaylistController extends Controller
 
         $follow = Follow::where(['user_id' => $user->id, 'playlist_id' => $request->id])->first();
 
+        $playlistQueue = PlaylistController::formPlaylistQueue($playlist);
 
         if(!$playlist){
             return "Такого плейлиста немає";
         }
 
         if(Auth::user()->id == $playlist->user_id){
-            return view('myplaylist', ['playlist' => $playlist, 'comments' => $comments, 'user' => $user]);
+            return view('myplaylist', ['playlist' => $playlist, 'comments' => $comments, 'user' => $user, 'playlistQueue' => $playlistQueue]);
         }
 
-        return view('playlist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments, 'follow' => $follow, 'user' => $user]);
+        return view('playlist', ['playlist' => $playlist, 'like' => $like, 'comments' => $comments, 'follow' => $follow, 'user' => $user, 'playlistQueue' => $playlistQueue]);
     }
 
     public function addComment(Request $request)
@@ -155,5 +157,16 @@ class PlaylistController extends Controller
             'song_id' => $songId,
         ]);
         return redirect()->back();
+    }
+
+    public function formPlaylistQueue($playlist)
+    {
+        $playlistQueue = "";
+        foreach ($playlist->songs as $song) {
+            $playlistQueue = $playlistQueue . $song->url . ',';
+        }
+        $playlistQueue = Str::beforeLast($playlistQueue, ',');
+
+        return $playlistQueue;
     }
 }
