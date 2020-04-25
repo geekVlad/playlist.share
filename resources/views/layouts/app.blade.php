@@ -52,7 +52,11 @@
 
      <!--Main js file Style-->
 
-    <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+    <!-- <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script> -->
+    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.4.1.js"></script>
+
+
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/plugins/swiper/js/swiper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/plugins/player/jplayer.playlist.min.js') }}"></script>
