@@ -9,7 +9,7 @@ var player = new Vue({
   			idsQueue = this.getIds();
   			var urlBegining = 'https://www.youtube.com/embed?listType=playlist&playlist=';
 
-  			this.playerUrls = urlBegining.concat(idsQueue, '&version=3&autoplay=1&fs=0');
+  			this.playerUrl = urlBegining.concat(idsQueue, '&version=3&autoplay=1&fs=0');
   			return this.playerUrl;
   		}
   	},
@@ -25,18 +25,21 @@ var player = new Vue({
 var changeSong = new Vue({
 	el: '#playlist',
 	data: {
-		playerUrls: ''
+		playerUrl: ''
 	},
 	methods: {
 		changeIdsQueue: function (selectedId) {
-  			var fullIdsQueue = player.getIds();
+  			var fullIdsQueue = player.idsQueue;
   			var pointer = fullIdsQueue.search(selectedId);
-  			var currentQueue = fullIdsQueue.substr(fullIdsQueue, pointer);
+  			var currentQueue = fullIdsQueue.slice(pointer);
   			var urlBegining = 'https://www.youtube.com/embed?listType=playlist&playlist=';
 
-  			this.playerUrls = urlBegining.concat(currentQueue, '&version=3&autoplay=1&fs=0');
+  			this.playerUrl = urlBegining.concat(currentQueue, '&version=3&autoplay=1&fs=0');
+  			player.playerUrl = this.playerUrl;
 
   			return this.playerUrl;
   		}
 	}
 });
+
+player.formedPlayerUrls();

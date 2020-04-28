@@ -25,7 +25,10 @@
                     <div class="album_feature">
                         <p>Count of songs: {{ $playlist->songs_count }} | Created: {{ $playlist->created_at }} | Last update: {{ $playlist->updated_at }}</p>
                         <p>Likes: {{ $playlist->likes_count }}  | Comments: {{ $playlist->comments_count }}  | Follows: {{ $playlist->follows_count }}</p>
+                        
                     </div>
+                    <!-- <a href="#" id="player" v-on:click="formedPlayerUrls()" class="ms_btn play_btn"><span class="play_all"><img src="{{ asset('images/svg/play_all.svg') }}" alt="">Play All</span></a> -->
+
                 </div>
                 <div class="album_more_optn ms_more_icon">
                     <span><img src="{{ asset('images/svg/more.svg') }}" alt=""></span>
