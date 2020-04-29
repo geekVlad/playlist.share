@@ -57,6 +57,19 @@
                             <li class="text-center">Add To Playlist</li>
                             <li class="text-center">Remove</li>
                         </ul>
+
+                        @if( $playlist->songs->count() == 0 )
+                        <ul>
+                            <li><a href="#"></a></li>
+                            <li class="text-left"><a href=""></a></li>
+                            <li class="text-center"><a href="#"></a></li>
+                            <li class="text-center"><a href="#">[Looks like there is no songs yet]</a></li>
+                            <li class="text-center"><a href="#"></a></li>
+                            <li class="text-center"><a href="#"></li>
+                            <li class="text-center"></li>
+                        </ul>
+                        @endif
+
                         @foreach( $playlist->songs as $song)
                         <ul>
                             <li><a href=""><span class="play_no">
@@ -109,7 +122,9 @@
             </div>
             @include('components.comments')
 
+            @if( $playlist->songs->count() > 0 )
             @include('components.player')
+            @endif
         </div>
     </div>
 @endsection

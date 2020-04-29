@@ -74,7 +74,7 @@ class PlaylistController extends Controller
 
         $follow = Follow::where(['user_id' => $user->id, 'playlist_id' => $request->id])->first();
 
-        $playlistQueue = PlaylistController::formPlaylistQueue($playlist);
+        $playlistQueue = PlaylistController::formPlaylistQueue($playlist->songs);
 
         if(!$playlist){
             return "Такого плейлиста немає";
@@ -133,12 +133,15 @@ class PlaylistController extends Controller
         $songs = Song::with('artist')->where('title', $searchRequest)->get();
         $artists = Artist::where('name', $searchRequest)->get();
 
+        $playlistQueue = PlaylistController::formPlaylistQueue($songs);
+
         return view('searchResults', 
             ['playlists' => $playlists, 
             'albums' => $albums,
             'songs' => $songs,
             'artists' => $artists,
             'user' => $user,
+            'playlistQueue' => $playlistQueue,
             ]);
     }
 
@@ -159,10 +162,10 @@ class PlaylistController extends Controller
         return redirect()->back();
     }
 
-    public function formPlaylistQueue($playlist)
+    public static function formPlaylistQueue($songs)
     {
         $playlistQueue = "";
-        foreach ($playlist->songs as $song) {
+        foreach ($songs as $song) {
             $playlistQueue = $playlistQueue . $song->url . ',';
         }
         $playlistQueue = Str::beforeLast($playlistQueue, ',');

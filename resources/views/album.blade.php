@@ -47,7 +47,7 @@
                 <div class="ms_heading">
                     <h1>Songs</h1>
                 </div>
-                <div class="album_list_wrapper">
+                <div class="album_list_wrapper" id="playlist">
                     <ul class="album_list_name">
                         <li>#</li>
                         <li>Song Title</li>
@@ -64,7 +64,7 @@
                                         {{ $loop->iteration }}
                                         @endif
                         </span><span class="play_hover"></span></a></li>
-                        <li><a href="#">{{ $song->title }}</a></li>
+                        <li><a href="#" v-on:click='changeIdsQueue("{{ $song->url }}")'>{{ $song->title }}</a></li>
                         <li class="text-center"><a href="#">{{ $song->duration }}</a></li>
                         <li class="text-center"><a href="#"><span class="ms_icon1 ms_fav_icon"></span></a></li>
                         <li class="text-center">
@@ -94,7 +94,9 @@
 
         </div>
             
-        
+        @if( $songs->count() > 0 )
+            @include('components.player')
+        @endif
 
             <!----Main div close---->
         </div>

@@ -189,8 +189,10 @@ class HomeController extends Controller
 
         $albums = Album::where('artist_id', $artistId)->get();//sort by release date
 
+        $playlistQueue = PlaylistController::formPlaylistQueue($singles);
+
         return view('artist', ['artist' => $artist, 'singles' => $singles, 'albums' => $albums, 
-            'user' => $user, ]);
+            'user' => $user, 'playlistQueue' => $playlistQueue]);
     }
 
     public function showAlbum(Request $request)
@@ -203,7 +205,9 @@ class HomeController extends Controller
 
         $songs = Song::where('album_id', $albumId)->get();
 
+        $playlistQueue = PlaylistController::formPlaylistQueue($songs);
+
         return view('album', ['songs' => $songs, 'album' => $album, 
-            'user' => $user, ]);
+            'user' => $user, 'playlistQueue' => $playlistQueue]);
     }
 }

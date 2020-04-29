@@ -143,7 +143,7 @@
                                             </div>
                                         </div>
                                         <div class="w_tp_song_name">
-                                            <h3>{{ $song->title }}</h3>
+                                            <h3></h3><a href="#" v-on:click='changeIdsQueue("{{ $song->url }}")'>{{ $song->title }}</a>
                                             <h3><a href='{{ url( "artist/{$song->artist->id}" ) }}'>{{ $song->artist->name }}</a></h3>
                                         </div>
                                     </div>
@@ -221,6 +221,9 @@
                 </div>
             </div>
 
+            @if( $songs->count() > 0 )
+                @include('components.player')
+            @endif
             
             <!----Main div close---->
         </div>
