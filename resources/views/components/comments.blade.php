@@ -3,7 +3,7 @@
                         <!----Right Queue---->
                         <div class="jp_queue_wrapper">
                             <span class="que_text" id="myPlaylistQueue"><i class="fa fa-angle-up" aria-hidden="true"></i> Comments</span>
-                            <div id="playlist-wrapp" class="jp-playlist">
+                            <div id="playlist-wrap" class="jp-playlist">
 							<div class="jp_queue_cls"><i class="fa fa-times" aria-hidden="true"></i></div>
                                 <h2>{{ $playlist->title }} comments:</h2>
 								<div class="jp_queue_list_inner">

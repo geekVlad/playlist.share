@@ -353,27 +353,27 @@ Assigned to: Theme Forest
             $(".ms_btn.play_btn").on('click', function() {
                 $('.ms_btn.play_btn').toggleClass('btn_pause');
             });
-            $(document).on('click', '#playlist-wrapp ul li .action .que_more', function(e) {
+            $(document).on('click', '#playlist-wrap ul li .action .que_more', function(e) {
 				e.preventDefault();
                 e.stopImmediatePropagation();
-                $('#playlist-wrapp ul li .action .que_more').not($(this)).closest('li').find('.more_option').removeClass('open_option');
+                $('#playlist-wrap ul li .action .que_more').not($(this)).closest('li').find('.more_option').removeClass('open_option');
                 $(this).closest('li').find('.more_option').toggleClass('open_option');
             });
             // $('.jp-playlist').on('click', function(){
-            // $('#playlist-wrapp ul li .more_option').removeClass('open_option');
+            // $('#playlist-wrap ul li .more_option').removeClass('open_option');
             // });
 
             $(document).on('click', function(e) {
                 if (!$(e.target).closest('.more_option').length && !$(e.target).closest('.action').length) {
-                    $('#playlist-wrapp .more_option').removeClass('open_option');
+                    $('#playlist-wrap .more_option').removeClass('open_option');
                 }
-                if (!$(e.target).closest('#playlist-wrapp').length && !$(e.target).closest('.jp_queue_wrapper').length && !$(e.target).closest('.player_left').length) {
-                    $('#playlist-wrapp').hide();
+                if (!$(e.target).closest('#playlist-wrap').length && !$(e.target).closest('.jp_queue_wrapper').length && !$(e.target).closest('.player_left').length) {
+                    $('#playlist-wrap').hide();
                 }
             });
             //
             $('.jp_queue_cls').on('click', function(e) {
-                $('#playlist-wrapp').hide();
+                $('#playlist-wrap').hide();
             });
 
         },
@@ -385,9 +385,9 @@ Assigned to: Theme Forest
         },
         showPlayList: function() {
             $(document).on('click', '#myPlaylistQueue', function() {
-                $('#playlist-wrapp').fadeToggle();
+                $('#playlist-wrap').fadeToggle();
             });
-            $('#playlist-wrapp').on('click', '#myPlaylistQueue', function(event) {
+            $('#playlist-wrap').on('click', '#myPlaylistQueue', function(event) {
                 event.stopPropagation();
             });
         },
