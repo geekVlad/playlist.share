@@ -58,7 +58,7 @@
                     <h1>Songs</h1>
                 </div>
                 <div class="album_inner_list">
-                    <div class="album_list_wrapper">
+                    <div class="album_list_wrapper" id="playlist">
                         <ul class="album_list_name">
                             <li>#</li>
                             <li class="text-left">Song title</li>
@@ -68,7 +68,21 @@
                             <li class="text-center">Add To Queue</li>
                             <li class="text-center">Add To Playlist</li>
                         </ul>
+
+                        @if( $playlist->songs->count() == 0 )
+                        <ul>
+                            <li><a href="#"></a></li>
+                            <li class="text-left"><a href=""></a></li>
+                            <li class="text-center"><a href="#"></a></li>
+                            <li class="text-center"><a href="#">[Looks like there is no songs yet]</a></li>
+                            <li class="text-center"><a href="#"></a></li>
+                            <li class="text-center"><a href="#"></li>
+                            <li class="text-center"></li>
+                        </ul>
+                        @endif
+
                         @foreach( $playlist->songs as $song)
+
                         <ul>
                             <li><a href="#"><span class="play_no">
                                 @if( $loop->iteration < 10 )
@@ -78,7 +92,7 @@
                                         @endif
                             </span><span class="play_hover"></span></a>
                             </li>
-                            <li class="text-left"><a href="#">{{ $song->title }}</a></li>
+                            <li class="text-left"><a href="#" v-on:click='changeIdsQueue("{{ $song->url }}")'>{{ $song->title }}</a></li>
                             <li class="text-center"><a href="#">{{ $song->album->title }}</a></li>
                             <li class="text-center"><a href="#">{{ $song->artist->name }}</a></li>
                             <li class="text-center"><a href="#">{{ $song->duration }}</a></li>
@@ -112,6 +126,10 @@
             </div>
 
             @include('components.comments')
+
+            @if( $playlist->songs->count() > 0 )
+            @include('components.player')
+            @endif
 
         </div>
     </div>

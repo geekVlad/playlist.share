@@ -25,7 +25,10 @@
                     <div class="album_feature">
                         <p>Count of songs: {{ $playlist->songs_count }} | Created: {{ $playlist->created_at }} | Last update: {{ $playlist->updated_at }}</p>
                         <p>Likes: {{ $playlist->likes_count }}  | Comments: {{ $playlist->comments_count }}  | Follows: {{ $playlist->follows_count }}</p>
+                        
                     </div>
+                    <!-- <a href="#" id="player" v-on:click="formedPlayerUrls()" class="ms_btn play_btn"><span class="play_all"><img src="{{ asset('images/svg/play_all.svg') }}" alt="">Play All</span></a> -->
+
                 </div>
                 <div class="album_more_optn ms_more_icon">
                     <span><img src="{{ asset('images/svg/more.svg') }}" alt=""></span>
@@ -44,7 +47,7 @@
                     <h1>Songs</h1>
                 </div>
                 <div class="album_inner_list">
-                    <div class="album_list_wrapper">
+                    <div class="album_list_wrapper" id="playlist">
                         <ul class="album_list_name">
                             <li>#</li>
                             <li class="text-center">Song Title</li>
@@ -54,6 +57,19 @@
                             <li class="text-center">Add To Playlist</li>
                             <li class="text-center">Remove</li>
                         </ul>
+
+                        @if( $playlist->songs->count() == 0 )
+                        <ul>
+                            <li><a href="#"></a></li>
+                            <li class="text-left"><a href=""></a></li>
+                            <li class="text-center"><a href="#"></a></li>
+                            <li class="text-center"><a href="#">[Looks like there is no songs yet]</a></li>
+                            <li class="text-center"><a href="#"></a></li>
+                            <li class="text-center"><a href="#"></li>
+                            <li class="text-center"></li>
+                        </ul>
+                        @endif
+
                         @foreach( $playlist->songs as $song)
                         <ul>
                             <li><a href=""><span class="play_no">
@@ -68,12 +84,10 @@
                                 </span></a>
                             </li>
                             <li class="text-center">
-                                <a href="#"  onclick='
-                                document.getElementById("player").src = "{{ $song->url }}";
-                                '>{{ $song->title }}</a>
+                                <a href="#"  v-on:click='changeIdsQueue("{{ $song->url }}")'>{{ $song->title }}</a>
 
                             </li>
-                            <li class="text-center"><a href="#">{{ $song->album->title }}</a></li>
+                            <li class="text-center"><a href="#" >{{ $song->album->title }}</a></li>
                             <li class="text-center"><a href="#">{{ $song->artist->name }}</a></li>
                             <li class="text-center"><a href="#">{{ $song->duration }}</a></li>
                             <li class="text-center">
@@ -108,7 +122,9 @@
             </div>
             @include('components.comments')
 
+            @if( $playlist->songs->count() > 0 )
             @include('components.player')
+            @endif
         </div>
     </div>
 @endsection
