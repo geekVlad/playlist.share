@@ -29,6 +29,7 @@
                     <div class="album_btn">
                         @if ( $like==null )
                                     <a href='{{ url( "playlistliked/{$playlist->id}" ) }}' class="ms_btn">Like</a>
+
                                     @else
                                     <a href='{{ url( "playlist_unliked/{$playlist->id}" ) }}' class="ms_btn">Unlike</a>
                                     @endif
@@ -120,6 +121,7 @@
                             </li>
 
                         </ul>
+
                         @endforeach
                     </div>
                 </div>

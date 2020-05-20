@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Events\LikesRowDeleted;
+use App\Events\LikesRowCreated;
 use App\Events\FollowRowDeleted;
+use App\Events\FollowRowCreated;
 
 class HomeController extends Controller
 {
@@ -127,6 +129,8 @@ class HomeController extends Controller
         $userId = Auth::id();
 
         $like = Likes::create(['user_id' => $userId, 'playlist_id' => $playlistId]);
+
+        event(new LikesRowCreated($like));
 
         return redirect()->back();
     }

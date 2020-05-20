@@ -16,4 +16,13 @@ class playlist_song extends Pivot
         'deleted' => SongsRowDeleted::class,
     ];
 
+    public function song()
+  	{
+    	return $this->belongsTo('App\Models\Song');
+  	}
+
+  	public function playlist()
+  	{
+    	return $this->belongsTo('App\Models\Playlist');
+  	}
 }
