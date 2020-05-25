@@ -6,10 +6,10 @@
             <div class="ms_sidemenu_inner">
                 <div class="ms_logo_inner">
                     <div class="ms_logo">
-                        <a href="{{ asset('index-2.html') }}"><img src="{{ asset('images/logo.png') }}" alt="" class="img-fluid"/></a>
+                        <a href="{{ url('/') }}"><img src="{{ asset('images/logo.png') }}" alt="" class="img-fluid"/></a>
                     </div>
                     <div class="ms_logo_open">
-                        <a href="{{ asset('index-2.html') }}"><img src="{{ asset('images/open_logo.png') }}" alt="" class="img-fluid"/></a>
+                        <a href="{{ url('/') }}"><img src="{{ asset('images/open_logo.png') }}" alt="" class="img-fluid"/></a>
                     </div>
                 </div>
                 <div class="ms_nav_wrapper">
@@ -68,7 +68,7 @@
 						</span>
 						</a>
                         </li>
-                        <li><a href="top_track.html" title="Top Tracks">
+                        <!-- <li><a href="top_track.html" title="Top Tracks">
 						<span class="nav_icon">
 							<span class="icon icon_tracks"></span>
 						</span>
@@ -76,9 +76,9 @@
 							Top tracks
 						</span>
 						</a>
-                        </li>
+                        </li> -->
                     </ul>
-                    <ul class="nav_downloads">
+                    <!-- <ul class="nav_downloads">
                         <li><a href="favourite.html" title="Favourites">
 						<span class="nav_icon">
 							<span class="icon icon_favourite"></span>
@@ -88,7 +88,7 @@
 						</span>
 						</a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>

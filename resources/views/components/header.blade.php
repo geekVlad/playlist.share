@@ -19,19 +19,23 @@
                 </div>
                 <div class="ms_top_right">
                     <div class="ms_top_btn">
-                        <a href="javascript:;" class="ms_admin_name">Hello 
+                        <!-- <a href="javascript:;" class="ms_admin_name">Hello 
                     <span class="ms_pro_name">ns</span>                                                    
+                        </a> -->
+                        <a class="ms_pro_name" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
                         </a>
-                        <ul class="pro_dropdown_menu">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                        </form>
+                        <!-- <ul class="pro_dropdown_menu">
                             <li><a href="profile.html">Profile</a></li>
                             <li><a href="manage_acc.html" target="_blank">Pricing Plan</a></li>
                             <li><a href="blog.html" target="_blank">Blog</a></li>
                             <li><a href="#">Setting</a></li>
-                            <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                            <li>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -39,7 +43,7 @@
                                     </li>
 
                                         
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
             </div>

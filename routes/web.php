@@ -27,7 +27,7 @@ Route::post('/editplaylist', 'PlaylistController@EditPlaylistPost')->name('editp
 Route::post('/getartistajax', 'PlaylistController@getArtistAjax')->name('getartistajax');
 Route::post('/getalbumajax', 'PlaylistController@getAlbumAjax')->name('getalbumajax');
 Route::post('/addsong', 'PlaylistController@AddSong')->name('addsong');
-Route::get('/deletesong', 'PlaylistController@DeleteSong')->name('deletesong');
+Route::get('/deletesong/song/{song_id}/playlist/{playlist_id}', 'PlaylistController@DeleteSong')->name('deletesong');
 
 Route::get('/myplaylists', 'HomeController@myPlaylists')->name('showMyPlaylists');
 Route::get('/newplaylists/{id?}', 'HomeController@showNewPlaylists');
